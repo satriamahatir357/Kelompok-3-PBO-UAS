@@ -1,0 +1,42 @@
+/* Container Utama Dashboard */
+.home-main-container {
+    -fx-padding: 20px;
+}
+
+/* Judul Halaman Dashboard */
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Aturan Dasar untuk Semua Kartu (Card) */
+.card {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 200px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+/* Label Deskripsi di Dalam Kartu */
+.card-label {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 14px;
+}
+
+/* Aturan Standar Angka di Dalam Kartu */
+.card-number {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* Warna Spesifik untuk Angka Total Produk (Biru) */
+.number-total {
+    -fx-text-fill: #2980b9;
+}
+
+/* Warna Spesifik untuk Angka Produk Diskon (Hijau) */
+.number-diskon {
+    -fx-text-fill: #27ae60;
+}

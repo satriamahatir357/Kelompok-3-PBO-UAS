@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15.0" stylesheets="@about-style.css" styleClass="about-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.about.AboutController">
+    
+    <Label text="Tentang Aplikasi" styleClass="about-title"/>
+    
+    <VBox spacing="10.0" styleClass="info-box">
+        <Label text="Sistem Manajemen Produk v1.0" styleClass="app-name"/>
+        <Label text="Aplikasi ini dibuat menggunakan JavaFX dengan arsitektur modular (Feature-Based Layout) dan styling CSS terpisah per folder." styleClass="app-desc" wrapText="true"/>
+        
+        <VBox style="-fx-border-color: #bdc3c7; -fx-border-width: 0 0 1 0; -fx-padding: 5 0 5 0;"/>
+        
+        <Label text="Developer:" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;"/>
+        <Label text="Andhika Annas Satria" styleClass="developer-name"/>
+    </VBox>
+    
+</VBox>

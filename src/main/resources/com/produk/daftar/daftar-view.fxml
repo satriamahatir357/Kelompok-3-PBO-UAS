@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" style="-fx-padding: 20px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Halaman Lihat Daftar Produk" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <Label text="Konten daftar tabel produk akan diletakkan di sini." style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+</VBox>

@@ -1,0 +1,70 @@
+/* Sisi Sidebar Utama (Biru Gelap Pekat sesuai gambar) */
+.sidebar {
+    -fx-background-color: #1a1c4b; 
+    -fx-padding: 30px 20px 30px 20px;
+}
+
+/* Wadah Grup Logo */
+.logo-container {
+    -fx-padding: 0 0 20px 0;
+}
+
+/* Tulisan "Logo" Putih */
+.logo-text {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 32px;
+    -fx-font-family: "System";
+}
+
+/* Representasi Garis Icon Box Hitam */
+.logo-icon-box {
+    -fx-border-color: #000000;
+    -fx-border-width: 3px;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+    -fx-max-width: 80px;
+    /* Membuat efek miring 3D belah ketupat minimalis menggunakan rotasi */
+    -fx-rotate: 45; 
+}
+
+/* Wadah Pembungkus Tombol */
+.menu-box {
+    -fx-vgrow: ALWAYS;
+    -fx-spacing: 25px; /* Ubah dari 15px ke 25px atau 30px agar lebih renggang */
+}
+
+/* Desain Tombol Kapsul seperti di Gambar */
+.sidebar-button {
+    -fx-background-color: #132b99; /* Warna biru tombol */
+    -fx-text-fill: #ffffff;        /* Teks putih bersih */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;         /* Teks rata tengah */
+    -fx-pref-width: 180px;         /* Lebar tombol dibuat proporsional */
+    -fx-pref-height: 45px;         /* Tinggi tombol agar tebal */
+    -fx-background-radius: 12px;   /* Membuat sudut melengkung halus */
+    -fx-cursor: hand;
+}
+
+/* Efek saat Tombol Disorot Mouse (Hover) */
+.sidebar-button:hover {
+    -fx-background-color: #1a3dc2; /* Biru sedikit lebih terang menyala */
+}
+
+/* Efek saat Tombol Sedang Aktif Diklik */
+.sidebar-button:focused {
+    -fx-border-color: #ffffff;     /* Garis tepi putih penanda fokus */
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 12px;
+}
+
+/* Area Konten Kanan */
+.content-area {
+    -fx-background-color: #f5f6fa;
+    -fx-padding: 20px;
+}
+
+.welcome-text {
+    -fx-font-size: 18px;
+    -fx-text-fill: #7f8c8d;
+}

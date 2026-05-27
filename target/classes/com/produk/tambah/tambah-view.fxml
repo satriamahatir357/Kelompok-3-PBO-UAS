@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" stylesheets="@tambah-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.tambah.TambahController">
+    
+    <Label text="Kelola Tambah Produk" styleClass="halaman-title"/>
+    
+    <HBox spacing="10.0" alignment="CENTER_LEFT">
+        <TextField fx:id="txtNama" promptText="Nama Produk" styleClass="input-field"/>
+        <TextField fx:id="txtHarga" promptText="Harga (Rp)" styleClass="input-field"/>
+        <TextField fx:id="txtStok" promptText="Jumlah Stok" styleClass="input-field"/>
+        <Button text="Simpan Produk" onAction="#onTambahClick" styleClass="btn-tambah"/>
+    </HBox>
+
+    <TableView fx:id="tabelProduk" VBox.vgrow="ALWAYS" styleClass="custom-table">
+        <columns>
+            <TableColumn fx:id="colNama" text="Nama Produk" prefWidth="250.0"/>
+            <TableColumn fx:id="colHarga" text="Harga Barang" prefWidth="150.0"/>
+            <TableColumn fx:id="colStok" text="Stok Tersedia" prefWidth="120.0"/>
+        </columns>
+    </TableView>
+    
+</VBox>
