@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="500.0" minWidth="800.0" stylesheets="@main-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.MainAppController">
+    
+    <left>
+        <VBox styleClass="sidebar" spacing="10.0" prefWidth="200.0">
+            <Label text="MENU APLIKASI" styleClass="sidebar-title"/>
+            
+            <Button text="Home" styleClass="sidebar-button" onAction="#tampilkanHome"/>
+            <Button text="Tambah Produk" styleClass="sidebar-button" onAction="#tampilkanTambah"/>
+            <Button text="Diskon Produk" styleClass="sidebar-button" onAction="#tampilkanDiskon"/>
+            <Button text="About" styleClass="sidebar-button" onAction="#tampilkanAbout"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <Label text="Selamat Datang! Silahkan pilih menu di samping." styleClass="welcome-text"/>
+        </StackPane>
+    </center>
+    
+</BorderPane>
