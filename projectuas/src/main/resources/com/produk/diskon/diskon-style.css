@@ -1,0 +1,80 @@
+/* Container Utama Halaman Diskon */
+.diskon-main-container {
+    -fx-padding: 20px;
+}
+
+/* Judul Utama */
+.halaman-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Container Form Input */
+.form-container {
+    -fx-max-width: 400px;
+}
+
+/* Label Petunjuk di Atas Input */
+.input-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: bold;
+}
+
+/* Kotak Input Teks (TextField) */
+.input-field {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Efek saat Kotak Input aktif diklik */
+.input-field:focused {
+    -fx-border-color: #9b59b6;
+    -fx-border-width: 1.5px;
+}
+
+/* Tombol Hitung */
+.btn-hitung {
+    -fx-background-color: #9b59b6;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 20px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+/* Efek saat Tombol Disorot Mouse */
+.btn-hitung:hover {
+    -fx-background-color: #8e44ad;
+}
+
+/* Wadah Kotak Hasil Akhir */
+.hasil-container {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 15px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-max-width: 400px;
+}
+
+/* Teks Label Hasil */
+.label-hasil-text {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 14px;
+}
+
+/* Angka Nominal Hasil Diskon */
+.label-hasil-angka {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e74c3c;
+}

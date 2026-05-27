@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox spacing="20.0" stylesheets="@home-style.css" styleClass="home-main-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.home.HomeController">
+    
+    <Label text="Dashboard Utama" styleClass="page-title"/>
+    
+    <HBox spacing="15.0">
+        
+        <VBox styleClass="card, card-total">
+            <Label text="Total Produk" styleClass="card-label"/>
+            <Label text="120" styleClass="card-number, number-total"/>
+        </VBox>
+        
+        <VBox styleClass="card, card-diskon">
+            <Label text="Produk Diskon" styleClass="card-label"/>
+            <Label text="15" styleClass="card-number, number-diskon"/>
+        </VBox>
+        
+    </HBox>
+    
+</VBox>

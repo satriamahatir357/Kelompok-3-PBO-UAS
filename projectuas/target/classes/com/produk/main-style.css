@@ -1,0 +1,48 @@
+/* Sisi Sidebar Menu (Warna gelap profesional) */
+.sidebar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 20px 10px 20px 10px;
+}
+
+/* Judul Menu Aplikasi di Atas Sidebar */
+.sidebar-title {
+    -fx-text-fill: #ecf0f1;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 10px 10px;
+}
+
+/* Desain Dasar Tombol Menu */
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-width: 180px;
+    -fx-padding: 10px 15px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+/* Efek Tombol saat Disorot Mouse (Hover) */
+.sidebar-button:hover {
+    -fx-background-color: #34495e; /* Berubah abu-abu sedikit terang */
+    -fx-text-fill: #ffffff; /* Teks menjadi putih terang */
+}
+
+/* Efek Tombol saat Sedang Diklik (Pressed) */
+.sidebar-button:armed {
+    -fx-background-color: #2980b9; /* Aksen biru penanda aktif */
+}
+
+/* Area Konten Utama di Sebelah Kanan */
+.content-area {
+    -fx-background-color: #f5f6fa; /* Warna latar belakang abu-abu sangat lembut */
+    -fx-padding: 20px;
+}
+
+/* Teks Selamat Datang Bawaan */
+.welcome-text {
+    -fx-font-size: 18px;
+    -fx-text-fill: #7f8c8d;
+}
