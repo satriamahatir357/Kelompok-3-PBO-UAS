@@ -60,8 +60,8 @@
 
 /* Area Konten Kanan */
 .content-area {
-    -fx-background-color: #f5f6fa;
-    -fx-padding: 20px;
+    -fx-background-color: #3b42f4; /* Set ke biru agar sela-sela terkunci warna biru */
+    -fx-padding: 0px;              /* Membuang bantalan kosong putih induk */
 }
 
 .welcome-text {
