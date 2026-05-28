@@ -5,3 +5,4 @@ com\produk\model\Produk.class
 com\produk\tambah\TambahController.class
 com\produk\about\AboutController.class
 com\produk\MainAppController.class
+com\produk\diskon\DiskonController$Produk.class
