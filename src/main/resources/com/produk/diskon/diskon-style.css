@@ -1,7 +1,8 @@
 .diskon-page {
     -fx-background-color: #302cff;
-    -fx-padding: 25px 64px;
+    -fx-padding: 35px 64px;
     -fx-font-family: "Segoe UI", Arial;
+    -fx-alignment: top-center;
 }
 
 .title {
@@ -9,7 +10,7 @@
     -fx-font-size: 28px;
     -fx-font-weight: bold;
     -fx-alignment: center;
-    -fx-max-width: infinity;
+    -fx-max-width: 790px;
 }
 
 .table-box {
