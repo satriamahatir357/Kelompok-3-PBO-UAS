@@ -44,15 +44,15 @@
         </HBox>
         
         <HBox spacing="15.0" alignment="CENTER_RIGHT" styleClass="action-bar">
-            <TextField promptText="Cari produk..." styleClass="search-bar" HBox.hgrow="ALWAYS" maxWidth="350.0"/>
-            <Button text="Lihat Produk" styleClass="btn-shortcut"/>
-            <Button text="Tambah Produk" styleClass="btn-shortcut"/>
+            <TextField fx:id="txtCari" promptText="Cari produk..." styleClass="search-bar" HBox.hgrow="ALWAYS" maxWidth="350.0"/>
+            <Button text="Lihat Produk" styleClass="btn-shortcut" onAction="#handleCariProduk"/>
+            <Button text="Tambah Produk" styleClass="btn-shortcut" onAction="#handleMenuTambah"/>
         </HBox>
         
         <VBox spacing="10.0" VBox.vgrow="ALWAYS">
             <Label text="Produk Diskon" styleClass="section-title"/>
             <VBox styleClass="discount-container" VBox.vgrow="ALWAYS">
-                </VBox>
+            </VBox>
         </VBox>
         
     </VBox>

@@ -51,6 +51,14 @@
     -fx-background-color: #1a3dc2; /* Biru sedikit lebih terang menyala */
 }
 
+/* Efek highlight untuk tombol menu sidebar yang sedang aktif */
+.sidebar-button-active {
+    -fx-background-color: #ffffff !important; /* Latar belakang jadi putih bersih */
+    -fx-text-fill: #1e3a8a !important;        /* Teks tombol berubah jadi biru tua */
+    -fx-font-weight: bold;                    /* Teks dibuat tebal */
+    -fx-background-radius: 8px;
+}
+
 /* Efek saat Tombol Sedang Aktif Diklik */
 .sidebar-button:focused {
     -fx-border-color: #ffffff;     /* Garis tepi putih penanda fokus */

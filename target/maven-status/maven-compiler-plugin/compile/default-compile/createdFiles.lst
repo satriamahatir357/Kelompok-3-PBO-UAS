@@ -1,4 +1,5 @@
 com\produk\MainApp.class
+com\produk\model\DataRepository.class
 com\produk\diskon\DiskonController.class
 com\produk\home\HomeController.class
 com\produk\model\Produk.class

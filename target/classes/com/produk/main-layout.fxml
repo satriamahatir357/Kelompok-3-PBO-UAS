@@ -17,11 +17,11 @@
             </VBox>
             
             <VBox spacing="15.0" alignment="CENTER" styleClass="menu-box">
-                <Button text="Home" styleClass="sidebar-button" onAction="#tampilkanHome"/>
-                <Button text="tambah Produk" styleClass="sidebar-button" onAction="#tampilkanTambah"/>
-                <Button text="Lihat Daftar" styleClass="sidebar-button" onAction="#tampilkanDaftar"/>
-                <Button text="Produk Diskon" styleClass="sidebar-button" onAction="#tampilkanDiskon"/>
-                <Button text="About" styleClass="sidebar-button" onAction="#tampilkanAbout"/>
+                <Button fx:id="btnNavHome" text="Home" styleClass="sidebar-button" onAction="#tampilkanHome"/>
+                <Button fx:id="btnNavTambah" text="tambah Produk" styleClass="sidebar-button" onAction="#tampilkanTambah"/>
+                <Button fx:id="btnNavDaftar" text="Lihat Daftar" styleClass="sidebar-button" onAction="#tampilkanDaftar"/>
+                <Button fx:id="btnNavDiskon" text="Produk Diskon" styleClass="sidebar-button" onAction="#tampilkanDiskon"/>
+                <Button fx:id="btnNavAbout" text="About" styleClass="sidebar-button" onAction="#tampilkanAbout"/>
             </VBox>
             
         </VBox>

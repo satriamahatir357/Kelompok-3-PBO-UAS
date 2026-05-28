@@ -4,30 +4,82 @@ package com.produk;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button; // Jangan lupa import Button agar tidak error
 import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
 public class MainAppController {
 
+    // 1. KUNCI UTAMA: Menyimpan instance global agar bisa dipanggil oleh controller lain
+    private static MainAppController instance;
+
     // Menghubungkan variabel ini dengan <StackPane fx:id="contentArea"> yang ada di main-layout.fxml
     @FXML
     private StackPane contentArea;
 
+    // Menghubungkan komponen tombol navigasi sidebar sesuai fx:id di main-layout.fxml
+    @FXML private Button btnNavHome;
+    @FXML private Button btnNavTambah;
+    @FXML private Button btnNavDaftar;
+    @FXML private Button btnNavDiskon;
+    @FXML private Button btnNavAbout;
+
     // Method initialize() otomatis berjalan pertama kali saat layout utama berhasil dimuat
     @FXML
     public void initialize() {
+        // Mencatat instance controller utama saat aplikasi pertama kali disetup
+        instance = this;
+        
         // Saat aplikasi pertama kali terbuka, langsung arahkan ke halaman Home
         tampilkanHome();
     }
 
-    // Fungsi untuk memuat halaman Home
+    // 2. KUNCI KEDUA: Method Getter untuk membagikan instance MainAppController ke HomeController
+    public static MainAppController getInstance() {
+        return instance;
+    }
+
+    // Fungsi pembantu untuk memindahkan style class "active" (Kapsul Putih) secara dinamis
+    private void aturTombolAktif(Button tombolAktif) {
+        Button[] semuaTombol = {btnNavHome, btnNavTambah, btnNavDaftar, btnNavDiskon, btnNavAbout};
+        
+        for (Button btn : semuaTombol) {
+            if (btn != null) {
+                // Bersihkan class active dari semua tombol sidebar terlebih dahulu
+                btn.getStyleClass().remove("sidebar-button-active");
+            }
+        }
+        
+        if (tombolAktif != null) {
+            // Pasang class active ke tombol yang halamannya sedang dibuka saat ini
+            tombolAktif.getStyleClass().add("sidebar-button-active");
+        }
+
+        // SOLUSI UTAMA: Paksa fokus keluar dari sidebar dan pindah ke area konten kanan
+        if (contentArea != null) {
+            contentArea.requestFocus();
+        }
+    }
+
+    // Fungsi untuk memuat halaman Home dengan fitur Auto-Refresh Data
     @FXML
     public void tampilkanHome() {
         try {
-            // Membaca file fxml halaman home dari foldernya sendiri
-            Parent halamanHome = FXMLLoader.load(getClass().getResource("home/home-view.fxml"));
-            // Memasukkan halaman home ke dalam area konten utama di sebelah kanan
+            // 1. Siapkan FXMLLoader secara manual agar kita bisa berinteraksi dengan controllernya
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("home/home-view.fxml"));
+            Parent halamanHome = loader.load();
+            
+            // 2. Ambil "otak" atau controller dari halaman Home tersebut
+            com.produk.home.HomeController homeController = loader.getController();
+            
+            // 3. PAKSA REFRESH: Perintahkan controller home untuk menghitung ulang ArrayList detik ini juga
+            homeController.refreshDataData();
+            
+            // 4. Masukkan halaman home ke dalam area konten utama di sebelah kanan
             contentArea.getChildren().setAll(halamanHome);
+            
+            // 5. SINKRONISASI NAVIGASI: Set tombol Home menjadi putih aktif
+            aturTombolAktif(btnNavHome);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Gagal memuat halaman home!");
@@ -42,6 +94,9 @@ public class MainAppController {
             Parent halamanTambah = FXMLLoader.load(getClass().getResource("tambah/tambah-view.fxml"));
             // Ganti isi area konten utama dengan halaman tambah
             contentArea.getChildren().setAll(halamanTambah);
+            
+            // SINKRONISASI NAVIGASI: Set tombol Tambah menjadi putih aktif
+            aturTombolAktif(btnNavTambah);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Gagal memuat halaman tambah produk!");
@@ -54,6 +109,9 @@ public class MainAppController {
         try {
             Parent halamanAbout = FXMLLoader.load(getClass().getResource("about/about-view.fxml"));
             contentArea.getChildren().setAll(halamanAbout);
+            
+            // SINKRONISASI NAVIGASI: Set tombol About menjadi putih aktif
+            aturTombolAktif(btnNavAbout);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Gagal memuat halaman about!");
@@ -68,6 +126,9 @@ public class MainAppController {
             Parent halamanDiskon = FXMLLoader.load(getClass().getResource("diskon/diskon-view.fxml"));
             // Ganti isi area konten utama dengan halaman diskon
             contentArea.getChildren().setAll(halamanDiskon);
+            
+            // SINKRONISASI NAVIGASI: Set tombol Diskon menjadi putih aktif
+            aturTombolAktif(btnNavDiskon);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Gagal memuat halaman diskon produk!");
@@ -78,12 +139,15 @@ public class MainAppController {
     @FXML
     public void tampilkanDaftar() {
         try {
-            // Membaca file fxml yang berada di dalam folder daftar (akan kita buat nanti)
+            // Membaca file fxml yang berada di dalam folder daftar
             Parent halamanDaftar = FXMLLoader.load(getClass().getResource("daftar/daftar-view.fxml"));
             contentArea.getChildren().setAll(halamanDaftar);
+            
+            // SINKRONISASI NAVIGASI: Set tombol Lihat Daftar menjadi putih aktif
+            aturTombolAktif(btnNavDaftar);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Gagal memuat halaman lihat daftar!");
         }
     }
-} 
+}
