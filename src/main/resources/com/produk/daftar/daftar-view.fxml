@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 
-<VBox spacing="20.0" style="-fx-padding: 20px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="Halaman Lihat Daftar Produk" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
-    <Label text="Konten daftar tabel produk akan diletakkan di sini." style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="24"
+      stylesheets="@daftar-style.css"
+      styleClass="daftar-page"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <Label text="Daftar Produk Lengkap" styleClass="title"/>
+
+    <VBox styleClass="table-box">
+        <HBox styleClass="table-header" spacing="8">
+
+            <Label text="Daftar Produk" styleClass="table-title"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <TextField promptText="Search" styleClass="search-field"/>
+
+            <ComboBox promptText="Urutkan" styleClass="sort-box">
+             <items>
+        <FXCollections fx:factory="observableArrayList">
+            <String fx:value="A-Z"/>
+            <String fx:value="Z-A"/>
+            <String fx:value="Harga Termurah"/>
+            <String fx:value="Harga Termahal"/>
+        </FXCollections>
+    </items>
+</ComboBox>
+        </HBox>
+
+        <TableView styleClass="produk-table">
+            <columns>
+                <TableColumn text="Nomor" prefWidth="90"/>
+                <TableColumn text="Nama Produk" prefWidth="270"/>
+                <TableColumn text="Harga(Rp)" prefWidth="130"/>
+                <TableColumn text="Stok" prefWidth="90"/>
+                <TableColumn text="Diskon" prefWidth="90"/>
+                <TableColumn text="Aksi" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
 </VBox>
