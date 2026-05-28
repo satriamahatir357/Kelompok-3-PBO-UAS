@@ -8,6 +8,8 @@ import javafx.scene.control.Button; // Jangan lupa import Button agar tidak erro
 import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
+import com.produk.daftar.DaftarController;
+
 public class MainAppController {
 
     // 1. KUNCI UTAMA: Menyimpan instance global agar bisa dipanggil oleh controller lain
@@ -136,18 +138,29 @@ public class MainAppController {
     }
 
     // Fungsi untuk memuat halaman Lihat Daftar Produk
+    // Fungsi untuk memuat halaman Lihat Daftar Produk (Sudah diperbaiki ke PUBLIC dan CONTENTAREA)
     @FXML
     public void tampilkanDaftar() {
         try {
-            // Membaca file fxml yang berada di dalam folder daftar
-            Parent halamanDaftar = FXMLLoader.load(getClass().getResource("daftar/daftar-view.fxml"));
-            contentArea.getChildren().setAll(halamanDaftar);
+            // Menggunakan jalur relative path agar aman dan konsisten dengan halaman lain
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("daftar/daftar-view.fxml"));
+            Parent view = loader.load();
             
-            // SINKRONISASI NAVIGASI: Set tombol Lihat Daftar menjadi putih aktif
+            // 1. Ambil instance controller dari fxml yang baru dimuat
+            DaftarController controller = loader.getController();
+            
+            // 2. JALANKAN TRIGGER REFRESH AGAR DATA TERBARU DARI TAMBAH PRODUK MASUK
+            controller.muatUlangData();
+            
+            // 3. Masukkan halaman ke penampung StackPane (contentArea) di sebelah kanan
+            contentArea.getChildren().setAll(view);
+            
+            // 4. SINKRONISASI NAVIGASI: Set tombol Lihat Daftar menjadi putih aktif
             aturTombolAktif(btnNavDaftar);
+            
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Gagal memuat halaman lihat daftar!");
+            e.printStackTrace();
         }
     }
 }

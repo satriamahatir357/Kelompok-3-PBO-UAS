@@ -5,12 +5,14 @@ public class Produk {
     private String nama;
     private double harga;
     private int stok;
+    private String diskon; // Tambahan variabel untuk menampung diskon riil
 
     // Constructor untuk membuat objek produk baru
     public Produk(String nama, double harga, int stok) {
         this.nama = nama;
         this.harga = harga;
         this.stok = stok;
+        this.diskon = "-"; // Default awal diatur strip (-) saat produk baru dibuat
     }
 
     // Getter dan Setter (Wajib ada agar propertinya bisa dibaca oleh TableView JavaFX)
@@ -22,4 +24,8 @@ public class Produk {
 
     public int getStok() { return stok; }
     public void setStok(int stok) { this.stok = stok; }
+
+    // Getter dan Setter Tambahan untuk Fitur Diskon Produk Mandiri
+    public String getDiskon() { return diskon; }
+    public void setDiskon(String diskon) { this.diskon = diskon; }
 }

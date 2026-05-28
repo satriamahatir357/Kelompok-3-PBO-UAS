@@ -9,41 +9,45 @@
       stylesheets="@daftar-style.css"
       styleClass="daftar-page"
       xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1">
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.produk.daftar.DaftarController">
 
     <Label text="Daftar Produk Lengkap" styleClass="title"/>
 
-    <VBox styleClass="table-box">
+    <VBox styleClass="table-box" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+        
         <HBox styleClass="table-header" spacing="8">
-
             <Label text="Daftar Produk" styleClass="table-title"/>
             
             <Region HBox.hgrow="ALWAYS"/>
 
-            <TextField promptText="Search" styleClass="search-field"/>
+            <TextField fx:id="txtSearch" promptText="Search" styleClass="search-field"/>
 
-            <ComboBox promptText="Urutkan" styleClass="sort-box">
-             <items>
-        <FXCollections fx:factory="observableArrayList">
-            <String fx:value="A-Z"/>
-            <String fx:value="Z-A"/>
-            <String fx:value="Harga Termurah"/>
-            <String fx:value="Harga Termahal"/>
-        </FXCollections>
-    </items>
-</ComboBox>
+            <ComboBox fx:id="cmbUrutkan" promptText="Urutkan" styleClass="sort-box">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="A-Z"/>
+                        <String fx:value="Z-A"/>
+                        <String fx:value="Harga Termurah"/>
+                        <String fx:value="Harga Termahal"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
         </HBox>
 
-        <TableView styleClass="produk-table">
+        <TableView fx:id="tableProduk" styleClass="produk-table" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn text="Nomor" prefWidth="90"/>
-                <TableColumn text="Nama Produk" prefWidth="270"/>
-                <TableColumn text="Harga(Rp)" prefWidth="130"/>
-                <TableColumn text="Stok" prefWidth="90"/>
-                <TableColumn text="Diskon" prefWidth="90"/>
-                <TableColumn text="Aksi" prefWidth="100"/>
+                <TableColumn fx:id="colNomor" text="Nomor" prefWidth="60"/>
+                <TableColumn fx:id="colNama" text="Nama Produk" prefWidth="240"/>
+                <TableColumn fx:id="colHarga" text="Harga(Rp)" prefWidth="130"/>
+                <TableColumn fx:id="colStok" text="Stok" prefWidth="90"/>
+                <TableColumn fx:id="colDiskon" text="Diskon" prefWidth="90"/>
+                <TableColumn fx:id="colAksi" text="Aksi" prefWidth="110"/>
             </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
         </TableView>
-    </VBox>
 
+    </VBox>
 </VBox>

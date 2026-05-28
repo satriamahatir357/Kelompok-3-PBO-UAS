@@ -1,8 +1,12 @@
-com\produk\MainApp.class
 com\produk\model\DataRepository.class
+com\produk\daftar\DaftarController$2.class
 com\produk\diskon\DiskonController.class
 com\produk\home\HomeController.class
+com\produk\daftar\DaftarController.class
+com\produk\MainApp.class
+com\produk\daftar\DaftarController$2$1.class
 com\produk\model\Produk.class
+com\produk\daftar\DaftarController$1.class
 com\produk\tambah\TambahController.class
 com\produk\about\AboutController.class
 com\produk\MainAppController.class
