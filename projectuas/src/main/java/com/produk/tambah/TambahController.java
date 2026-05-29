@@ -1,13 +1,9 @@
 package com.produk.tambah;
 
 import com.produk.model.Produk;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.produk.model.DataRepository; // Mengimport Gudang Data Global
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TambahController {
 
@@ -16,40 +12,37 @@ public class TambahController {
     @FXML private TextField txtHarga;
     @FXML private TextField txtStok;
 
-    @FXML private TableView<Produk> tabelProduk;
-    @FXML private TableColumn<Produk, String> colNama;
-    @FXML private TableColumn<Produk, Double> colHarga;
-    @FXML private TableColumn<Produk, Integer> colStok;
-
-    // ObservableList: List khusus JavaFX yang otomatis mengupdate UI Tabel saat datanya berubah
-    private final ObservableList<Produk> listProduk = FXCollections.observableArrayList();
-
     // initialize() otomatis berjalan saat halaman tambah dimuat
     @FXML
     public void initialize() {
-        // Hubungkan kolom tabel dengan properti getter (getNama, getHarga, getStok) yang ada di kelas Produk
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colHarga.setCellValueFactory(new PropertyValueFactory<>("harga"));
-        colStok.setCellValueFactory(new PropertyValueFactory<>("stok"));
-
-        // Masukkan list data ke dalam tabel
-        tabelProduk.setItems(listProduk);
+        // Dikosongkan karena halaman ini murni hanya form input, 
+        // komponen tabel data sudah diurus secara terpisah di Halaman Daftar.
     }
 
-    // Fungsi yang berjalan ketika tombol "Simpan Produk" diklik
+    // SATU FUNGSI UTAMA: Berjalan ketika tombol "Simpan" diklik
     @FXML
     void onTambahClick() {
-        // Ambil teks inputan user, lalu konversi tipe datanya sesuai model
-        String nama = txtNama.getText();
-        double harga = Double.parseDouble(txtHarga.getText());
-        int stok = Integer.parseInt(txtStok.getText());
+        try {
+            // 1. Ambil teks inputan user, lalu konversi tipe datanya
+            String nama = txtNama.getText();
+            double harga = Double.parseDouble(txtHarga.getText());
+            int stok = Integer.parseInt(txtStok.getText());
 
-        // Bungkus data ke dalam objek Produk baru, lalu masukkan ke list
-        listProduk.add(new Produk(nama, harga, stok));
+            // 2. Bungkus data ke dalam objek Produk baru
+            Produk produkBaru = new Produk(nama, harga, stok);
 
-        // Bersihkan kembali kotak input agar siap diisi data baru
-        txtNama.clear();
-        txtHarga.clear();
-        txtStok.clear();
+            // 3. SIMPAN KE UTAMA: Masukkan ke DataRepository agar semua halaman bisa mendeteksi & menghitung
+            DataRepository.tambahProduk(produkBaru);
+
+            // 4. Bersihkan kembali kotak input agar siap diisi data baru
+            txtNama.clear();
+            txtHarga.clear();
+            txtStok.clear();
+            
+            System.out.println("Produk berhasil disimpan ke sistem sentral!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Pastikan input Harga dan Stok diisi menggunakan angka yang valid!");
+        }
     }
 }
