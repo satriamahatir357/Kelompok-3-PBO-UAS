@@ -1,36 +1,42 @@
-/* Judul Utama */
+/* Background Biru Utama */
+.main-content-background {
+    -fx-background-color: #2434f0;
+    -fx-padding: 0px;
+}
+
+/* Bar Hitam Atas */
+.top-header {
+    -fx-background-color: #0d0d0d;
+    -fx-padding: 10px 20px;
+}
+.top-header-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* Judul & Deskripsi Teks Putih */
 .about-title {
-    -fx-font-size: 22px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: #ffffff;
 }
-
-/* Kotak Putih Tempat Informasi */
-.info-box {
-    -fx-background-color: #ffffff;
-    -fx-padding: 25px;
-    -fx-background-radius: 8px;
-    -fx-max-width: 500px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);
-}
-
-/* Nama Aplikasi */
-.app-name {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #2980b9;
-}
-
-/* Deskripsi Aplikasi */
 .app-desc {
-    -fx-font-size: 14px;
-    -fx-text-fill: #34495e;
-    -fx-line-spacing: 5px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+    -fx-line-spacing: 4px;
 }
 
-/* Nama Pengembang */
-.developer-name {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+/* Pengaturan Grid & Efek Foto Melengkung */
+/* Pengaturan Grid untuk Susunan 4 Atas dan 2 Bawah */
+.team-grid {
+    -fx-hgap: 30px;       /* Jarak horizontal antar foto */
+    -fx-vgap: 25px;       /* Jarak vertikal antara baris atas dan bawah */
+    -fx-alignment: center; /* Menjaga agar seluruh grup foto tetap berada di tengah */
+}
+
+/* Bingkai Foto Melengkung & Efek Bayangan */
+.team-photo {
+    /* Memberikan efek bayangan lembut di sekeliling bingkai foto */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 4);
 }
