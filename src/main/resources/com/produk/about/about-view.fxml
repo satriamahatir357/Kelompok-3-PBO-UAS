@@ -1,20 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<VBox spacing="15.0" stylesheets="@about-style.css" styleClass="about-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.about.AboutController">
-    
-    <Label text="Tentang Aplikasi" styleClass="about-title"/>
-    
-    <VBox spacing="10.0" styleClass="info-box">
-        <Label text="Sistem Manajemen Produk v1.0" styleClass="app-name"/>
-        <Label text="Aplikasi ini dibuat menggunakan JavaFX dengan arsitektur modular (Feature-Based Layout) dan styling CSS terpisah per folder." styleClass="app-desc" wrapText="true"/>
-        
-        <VBox style="-fx-border-color: #bdc3c7; -fx-border-width: 0 0 1 0; -fx-padding: 5 0 5 0;"/>
-        
-        <Label text="Developer:" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;"/>
-        <Label text="Andhika Annas Satria" styleClass="developer-name"/>
-    </VBox>
-    
+<VBox prefHeight="600.0" prefWidth="700.0" styleClass="main-content-background" stylesheets="@about-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.about.AboutController">
+   <children>
+      
+      <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="700.0" styleClass="top-header">
+         <children>
+            <Label styleClass="top-header-text" text="Kami Siap Membantu anda" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label styleClass="top-header-text" text="KELOMPOK 3" />
+         </children>
+      </HBox>
+      
+      <VBox alignment="CENTER" prefHeight="555.0" prefWidth="700.0" spacing="25.0" style="-fx-padding: 30px;" VBox.vgrow="ALWAYS">
+         <children>
+            <Label styleClass="about-title" text="About Aplikasi" />
+            <Label styleClass="app-desc" maxWidth="600.0" text="Aplikasi Manajemen Produk adalah sistem yang dirancang untuk membantu pengguna dalam mengelola data produk secara lebih mudah, cepat, dan terorganisir. Aplikasi ini memiliki fitur seperti menambah, mengedit, menghapus, dan mencari data produk sehingga proses pengelolaan menjadi lebih efisien." textAlignment="CENTER" wrapText="true" />
+            
+            <Label styleClass="about-title" style="-fx-padding: 10px 0 0 0;" text="Kelompok Kami" />
+            
+            <GridPane styleClass="team-grid">
+               <children>
+                  
+                  <ImageView fitHeight="140.0" fitWidth="140.0" styleClass="team-photo" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <image><Image url="https://picsum.photos/140/140?random=1" /></image>
+                     <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="140.0" width="140.0" /></clip>
+                  </ImageView>
+                  
+                  <ImageView fitHeight="140.0" fitWidth="140.0" styleClass="team-photo" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <image><Image url="https://picsum.photos/140/140?random=2" /></image>
+                     <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="140.0" width="140.0" /></clip>
+                  </ImageView>
+                  
+                  <ImageView fitHeight="140.0" fitWidth="140.0" styleClass="team-photo" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                     <image><Image url="https://picsum.photos/140/140?random=3" /></image>
+                     <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="140.0" width="140.0" /></clip>
+                  </ImageView>
+                  
+                  <ImageView fitHeight="140.0" fitWidth="140.0" styleClass="team-photo" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                     <image><Image url="https://picsum.photos/140/140?random=4" /></image>
+                     <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="140.0" width="140.0" /></clip>
+                  </ImageView>
+                  
+                  <ImageView fitHeight="140.0" fitWidth="140.0" styleClass="team-photo" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image><Image url="https://picsum.photos/140/140?random=5" /></image>
+                     <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="140.0" width="140.0" /></clip>
+                  </ImageView>
+                  
+                  <ImageView fitHeight="140.0" fitWidth="140.0" styleClass="team-photo" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <image><Image url="https://picsum.photos/140/140?random=6" /></image>
+                     <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="140.0" width="140.0" /></clip>
+                  </ImageView>
+                  
+               </children>
+            </GridPane>
+            
+         </children>
+      </VBox>
+      
+   </children>
 </VBox>

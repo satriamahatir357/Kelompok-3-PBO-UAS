@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\about\AboutController.java
 D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\daftar\DaftarController.java
 D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\diskon\DiskonController.java
@@ -7,3 +8,14 @@ D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\MainAppController.java
 D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\model\DataRepository.java
 D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\model\Produk.java
 D:\UASPBO\Kelompok-3-PBO-UAS\src\main\java\com\produk\tambah\TambahController.java
+=======
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\about\AboutController.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\daftar\DaftarController.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\diskon\DiskonController.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\home\HomeController.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\MainApp.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\MainAppController.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\model\DataRepository.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\model\Produk.java
+C:\Users\user\Documents\cpp 1\Kelompok-3-PBO-UAS\src\main\java\com\produk\tambah\TambahController.java
+>>>>>>> 18b13d27a5a6f788280af7773485e0bcf1cb2b38
