@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox prefHeight="700.0" prefWidth="800.0" styleClass="main-content-background" stylesheets="@about-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.about.AboutController">
+<VBox prefHeight="750.0" prefWidth="900.0" styleClass="main-content-background" stylesheets="@about-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.produk.about.AboutController">
    <children>
       
       <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="700.0" styleClass="top-header">
@@ -20,83 +20,74 @@
          </children>
       </HBox>
       
-      <VBox alignment="CENTER" prefHeight="655.0" prefWidth="800.0" spacing="15.0" style="-fx-padding: 20px;" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="705.0" prefWidth="900.0" spacing="15.0" style="-fx-padding: 20px;" VBox.vgrow="ALWAYS">
          <children>
             <Label styleClass="about-title" text="About Aplikasi" />
-            <Label styleClass="app-desc" maxWidth="600.0" text="Aplikasi Manajemen Produk adalah sistem yang dirancang untuk membantu pengguna dalam mengelola data produk secara lebih mudah, cepat, dan terorganisir. Aplikasi ini memiliki fitur seperti menambah, mengedit, menghapus, dan mencari data produk sehingga proses pengelolaan menjadi lebih efisien." textAlignment="CENTER" wrapText="true" />
             
-            <Label styleClass="about-title" style="-fx-padding: 5px 0 0 0;" text="Kelompok Kami" />
+            <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="Aplikasi Manajemen Produk adalah sistem yang dirancang untuk membantu pengguna dalam mengelola data produk secara lebih mudah, cepat, dan terorganisir. Aplikasi ini memiliki fitur seperti menambah, mengedit, menghapus, dan mencari data produk sehingga proses pengelolaan menjadi lebih efisien." textAlignment="CENTER" wrapText="true" />
             
-            <GridPane styleClass="team-grid">
+            <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Kelompok Kami" />
+            
+            <GridPane alignment="CENTER" hgap="20.0" vgap="20.0" styleClass="team-grid">
                <children>
                   
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 1.jpeg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                           <image><Image url="@images/Andhika.jpeg" /></image>
+                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                         </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Jois Miranda" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Andhika Annas Satria" />
                      </children>
                   </VBox>
                   
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 2.jpg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                           <image><Image url="@images/Anggito.jpeg" /></image>
+                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                         </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Nama Anggota 2" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Anggito Satrio Wicaksono" />
                      </children>
                   </VBox>
                   
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 3.jpg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                           <image><Image url="@images/Rafi.jpeg" /></image>
+                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                         </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Nama Anggota 3" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Rasya Zaka Arrafi" />
                      </children>
                   </VBox>
                   
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 4.jpg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                           <image><Image url="@images/Wahyu.jpeg" /></image>
+                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                         </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Nama Anggota 4" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Wahyu Septiya Ardana" />
                      </children>
                   </VBox>
                   
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-translate-x: 75px;">
+                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 5.jpg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                           <image><Image url="@images/Jois.jpeg" /></image>
+                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                         </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Nama Anggota 5" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Jois Miranda Agunning Putri" />
                      </children>
                   </VBox>
                   
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-translate-x: 75px;">
+                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 6.jpg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                           <image><Image url="@images/Okta.png" /></image>
+                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                         </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Nama Anggota 6" />
-                     </children>
-                  </VBox>
-                  
-                  <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-translate-x: 75px;">
-                     <children>
-                        <ImageView fitHeight="130.0" fitWidth="130.0" styleClass="team-photo">
-                           <image><Image url="@images/foto 7.jpg" /></image>
-                           <clip><Rectangle arcHeight="25.0" arcWidth="25.0" height="130.0" width="130.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;" text="Nama Anggota 7" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Tri Oktavia Ramadhani" />
                      </children>
                   </VBox>
                   
