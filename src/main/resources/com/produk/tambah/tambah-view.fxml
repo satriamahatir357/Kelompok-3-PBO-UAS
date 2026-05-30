@@ -57,6 +57,7 @@
 
                     <Button
                         text="Batal"
+                        onAction="#onBatalClick"
                         styleClass="btn-batal"/>
 
                     <Button
@@ -67,7 +68,7 @@
 
             </VBox>
 
-            </VBox>
+        </VBox>
     </center>
 
 </BorderPane>
