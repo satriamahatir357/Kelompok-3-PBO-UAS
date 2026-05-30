@@ -16,7 +16,7 @@
         <HBox styleClass="table-header">
             <Label text="Daftar Produk" styleClass="table-title"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <TextField promptText="Search" styleClass="search-field"/>
+            <TextField fx:id="txtSearch" promptText="Search" styleClass="search-field"/>
         </HBox>
 
         <TableView fx:id="tableProduk" styleClass="produk-table">
@@ -35,7 +35,7 @@
 
     <HBox spacing="46" styleClass="button-area">
         <Button text="Hitung Diskon %" onAction="#onHitungClick" styleClass="btn-hitung"/>
-        <Button text="Tetapkan Diskon" styleClass="btn-tetapkan"/>
+        <Button text="Tetapkan Diskon" onAction="#onTetapkanClick" styleClass="btn-tetapkan"/>
     </HBox>
 
     <Label fx:id="lblHargaAkhir" text="" styleClass="hasil-label"/>
