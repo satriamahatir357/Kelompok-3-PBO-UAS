@@ -1,72 +1,100 @@
-/* Judul Halaman */
-.halaman-title {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+/* ROOT */
+.root-bg {
+    -fx-background-color: #352df5;
 }
 
-/* Kotak Input Teks (TextField) */
+/* TITLE */
+.title-label {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 20 0 0 0;
+}
+
+/* CARD FORM */
+.form-card {
+    -fx-background-color: #2433a8;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
+
+/* LABEL */
+.label-form {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* INPUT */
 .input-field {
+    -fx-background-color: #d9d9d9;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
     -fx-font-size: 14px;
-    -fx-padding: 8px 12px;
-    -fx-background-color: #ffffff;
-    -fx-border-color: #bdc3c7;
-    -fx-border-width: 1px;
-    -fx-border-radius: 4px;
-    -fx-background-radius: 4px;
-    -fx-pref-width: 180px; /* Membatasi lebar kotak input agar seragam */
+    -fx-pref-height: 42px;
+    -fx-border-color: transparent;
 }
 
-/* Efek saat Kotak Input aktif diklik */
 .input-field:focused {
-    -fx-border-color: #2ecc71; /* Aksen warna hijau segar saat aktif */
-    -fx-border-width: 1.5px;
+    -fx-border-color: #00ffcc;
+    -fx-border-width: 2px;
 }
 
-/* Tombol Simpan Produk */
-.btn-tambah {
-    -fx-background-color: #2ecc71; /* Warna hijau khas tombol sukses/simpan */
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 14px;
+/* BUTTON SIMPAN */
+.btn-simpan {
+    -fx-background-color: #3ddc4f;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-padding: 9px 18px;
-    -fx-background-radius: 4px;
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
+    -fx-padding: 8 18;
 }
 
-/* Efek saat Tombol Disorot Mouse */
-.btn-tambah:hover {
-    -fx-background-color: #27ae60; /* Warna hijau sedikit lebih gelap */
+.btn-simpan:hover {
+    -fx-background-color: #2fc440;
 }
 
-/* Kustomisasi Komponen Tabel (TableView) */
-.custom-table {
-    -fx-background-color: transparent;
-    -fx-border-color: #e2e8f0;
-    -fx-border-width: 1px;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-}
-
-/* Mewarnai Baris Kepala Tabel (Table Header) */
-.custom-table .column-header-background {
-    -fx-background-color: #f8f9fa;
-    -fx-border-color: #e2e8f0;
-    -fx-border-width: 0 0 1 0;
-}
-
-/* Mengubah Font Judul Kolom Tabel */
-.custom-table .column-header .label {
-    -fx-text-fill: #7f8c8d;
+/* BUTTON BATAL */
+.btn-batal {
+    -fx-background-color: red;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-size: 13px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-padding: 8 18;
 }
 
-/* Mengatur Gaya Baris Sel di Dalam Tabel */
+.btn-batal:hover {
+    -fx-background-color: #d60000;
+}
+
+/* TABLE */
+.custom-table {
+    -fx-background-color: #2433a8;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* HEADER */
+.custom-table .column-header-background {
+    -fx-background-color: #1b257d;
+}
+
+.custom-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ROW */
+.custom-table .table-row-cell {
+    -fx-background-color: #2433a8;
+    -fx-text-fill: white;
+}
+
 .custom-table .table-cell {
-    -fx-font-size: 14px;
-    -fx-padding: 10px;
-    -fx-text-fill: #2c3e50;
-    -fx-border-color: #f1f2f6;
-    -fx-border-width: 0 0 1 0; /* Garis pembatas horizontal tipis antar data */
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
 }
