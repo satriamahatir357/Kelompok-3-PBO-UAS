@@ -1,14 +1,15 @@
 package com.produk;
 
 // Mengimport semua library JavaFX yang dibutuhkan untuk perpindahan halaman
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Button; // Jangan lupa import Button agar tidak error
-import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
 import com.produk.daftar.DaftarController;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader; // Jangan lupa import Button agar tidak error
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 
 public class MainAppController {
 
@@ -121,12 +122,15 @@ public class MainAppController {
     }
 
     // Fungsi untuk memuat halaman Diskon Produk
+    // Fungsi untuk memuat halaman Diskon Produk dengan Auto-Refresh Data
     @FXML
     public void tampilkanDiskon() {
         try {
-            // Membaca file fxml yang berada di dalam folder diskon
-            Parent halamanDiskon = FXMLLoader.load(getClass().getResource("diskon/diskon-view.fxml"));
-            // Ganti isi area konten utama dengan halaman diskon
+            // Gunakan FXMLLoader manual agar bisa melakukan sinkronisasi data repositori sebelum scene dirender
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("diskon/diskon-view.fxml"));
+            Parent halamanDiskon = loader.load();
+            
+            // Masukkan halaman diskon ke dalam area konten utama
             contentArea.getChildren().setAll(halamanDiskon);
             
             // SINKRONISASI NAVIGASI: Set tombol Diskon menjadi putih aktif
