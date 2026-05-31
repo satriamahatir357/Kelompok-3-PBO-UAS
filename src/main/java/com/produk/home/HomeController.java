@@ -176,6 +176,13 @@ public class HomeController {
     }
 
     @FXML
+    private void handleLihatProduk() {
+        if (MainAppController.getInstance() != null) {
+            MainAppController.getInstance().tampilkanDaftar();
+        }
+    }
+
+    @FXML
     private void handleMenuTambah() {
         if (MainAppController.getInstance() != null) {
             MainAppController.getInstance().tampilkanTambah();

@@ -55,7 +55,7 @@
                 
                 <HBox spacing="15.0" alignment="CENTER_RIGHT" styleClass="action-bar">
                     <TextField fx:id="txtCari" promptText="Cari produk..." styleClass="search-bar" HBox.hgrow="ALWAYS" maxWidth="350.0"/>
-                    <Button text="Lihat Produk" styleClass="btn-shortcut" onAction="#handleCariProduk"/>
+                    <Button text="Lihat Produk" styleClass="btn-shortcut" onAction="#handleLihatProduk"/>
                     <Button text="Tambah Produk" styleClass="btn-shortcut" onAction="#handleMenuTambah"/>
                 </HBox>
                 
