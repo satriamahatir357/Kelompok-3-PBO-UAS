@@ -1,0 +1,13 @@
+# Abaikan folder target hasil build Maven
+target/
+
+# Abaikan semua file hasil compile .class
+*.class
+*.log
+
+# Abaikan konfigurasi IDE bawaan laptop masing-masing
+.idea/
+.settings/
+.classpath
+.project
+*.iml
