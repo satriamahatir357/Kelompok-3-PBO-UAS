@@ -7,7 +7,7 @@
 /* Sisi Top Bar Atas (Hitam Pekat Minimalis) */
 .top-bar {
     -fx-background-color: #0b0c16;
-    -fx-padding: 15px 25px; 
+    -fx-padding: 8px 20px; 
 }
 
 .top-bar-left {
@@ -25,10 +25,21 @@
 
 /* Lingkaran Kepala User Avatar di Top Bar */
 .avatar-icon {
-    -fx-background-color: #ffffff;
-    -fx-min-width: 22px;
-    -fx-min-height: 22px;
+    -fx-width: 35px; /* Sesuaikan ukuran lingkaran avatar */
+    -fx-height: 35px;
+    -fx-min-width: 35px;
+    -fx-min-height: 35px;
+    
+    -fx-background-image: url("images/avatar.png"); 
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    
+    /* Membuat komponen menjadi bulat sempurna */
     -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    
+    /* Efek kursor tangan saat diarahkan ke avatar */
+    -fx-cursor: hand; 
 }
 
 /* ScrollPane Utama Pembungkus Dashboard (Scroll Ke Bawah) */

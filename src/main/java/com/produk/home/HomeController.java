@@ -12,6 +12,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.input.MouseEvent; // Library pendeteksi klik mouse
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ public class HomeController {
     @FXML private Label lblProdukBaru;
     @FXML private TextField txtCari;
 
-    // FXML Inject untuk komponen area tabel live search dinamis (Atas)
     @FXML private VBox boxHasilCari;
     @FXML private TableView<Produk> tblHasilCari;
     @FXML private TableColumn<Produk, String> colNama;
@@ -31,17 +31,17 @@ public class HomeController {
     @FXML private TableColumn<Produk, Integer> colStok;
     @FXML private TableColumn<Produk, String> colDiskon;
 
-    // FXML Inject untuk kontainer HBox tempat Card Promo nongol (Bawah)
     @FXML private HBox containerCardDiskon;
+
+    // Menghubungkan ID avatar dari FXML ke Java Controller
+    @FXML private VBox avatarClickable;
 
     @FXML
     public void initialize() {
-        // 1. Hubungkan variabel properti model ke kolom TableView pencarian
         if (colNama != null) colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
         if (colStok != null) colStok.setCellValueFactory(new PropertyValueFactory<>("stok"));
         if (colDiskon != null) colDiskon.setCellValueFactory(new PropertyValueFactory<>("diskon"));
 
-        // 2. Format kolom harga agar desimal murni tanpa format ilmiah huruf E
         if (colHarga != null) {
             colHarga.setCellValueFactory(new PropertyValueFactory<>("harga"));
             colHarga.setCellFactory(column -> new TableCell<Produk, Double>() {
@@ -57,58 +57,49 @@ public class HomeController {
             });
         }
 
-        // 3. LIVE SEARCH LISTENER
         if (txtCari != null) {
             txtCari.textProperty().addListener((observable, oldValue, newValue) -> {
                 filterPencarianDinamis(newValue);
             });
         }
 
-        // Jalankan kalkulasi angka statistik awal & generate card promo pertama
         refreshDataData();
     }
 
-    // FUNGSI UTAMA 1: Membuat Card/Kotak Promo secara dinamis (Tinggi dikunci aman)
     public void refreshCardPromoDiskon() {
         if (containerCardDiskon == null) return;
         
-        // Bersihkan area lama agar card tidak ter-duplikasi saat data diupdate
         containerCardDiskon.getChildren().clear();
 
         ArrayList<Produk> semuaProduk = DataRepository.getDaftarProduk();
 
         for (Produk p : semuaProduk) {
-            // Validasi: Hanya buatkan card jika produk punya diskon (bukan strip atau kosong)
             if (p.getDiskon() != null && !p.getDiskon().equals("-") && !p.getDiskon().trim().isEmpty()) {
                 
-                // Pembuatan container Box Card secara dynamic
                 VBox card = new VBox();
                 card.setSpacing(6.0);
                 card.setStyle(
                     "-fx-background-color: #1a202c; " + 
                     "-fx-background-radius: 12px; " +
-                    "-fx-border-color: #ff0055; " +    // Aksen warna pink neon khas diskon promo
+                    "-fx-border-color: #ff0055; " +   
                     "-fx-border-width: 1.5px; " +
                     "-fx-border-radius: 12px; " +
                     "-fx-padding: 12px; " +
                     "-fx-min-width: 140px; " +          
                     "-fx-pref-width: 140px; " +
-                    "-fx-min-height: 130px; " +        // Mengunci tinggi minimal card agar teks tidak amblas kebawah
+                    "-fx-min-height: 130px; " +        
                     "-fx-pref-height: 130px; " +
                     "-fx-alignment: center;"
                 );
 
-                // Elemen 1: Judul Nama Produk
                 Label lblNama = new Label(p.getNama());
                 lblNama.setStyle("-fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 14px; -fx-text-alignment: center;");
                 lblNama.setWrapText(true); 
 
-                // Elemen 2: Teks Harga Berformat Rupiah Bersih
                 String hargaFormat = String.format("%,.0f", p.getHarga()).replace(',', '.');
                 Label lblHargaProduk = new Label("Rp " + hargaFormat);
                 lblHargaProduk.setStyle("-fx-text-fill: #cbd5e0; -fx-font-size: 12px;");
 
-                // Elemen 3: Badge Diskon Menyala
                 Label lblBadgeDiskon = new Label("DISKON " + p.getDiskon());
                 lblBadgeDiskon.setStyle(
                     "-fx-background-color: #ffcc00; " +
@@ -119,16 +110,12 @@ public class HomeController {
                     "-fx-background-radius: 5px;"
                 );
 
-                // Masukkan komponen teks ke dalam wadah card
                 card.getChildren().addAll(lblNama, lblHargaProduk, lblBadgeDiskon);
-
-                // Tampilkan card promo ke dalam HBox kontainer utama halaman Home
                 containerCardDiskon.getChildren().add(card);
             }
         }
     }
 
-    // FUNGSI UTAMA 2: Live Search menyaring semua produk yang mengandung huruf yang diketik
     private void filterPencarianDinamis(String teksInput) {
         String kataKunci = teksInput.trim().toLowerCase();
 
@@ -157,7 +144,6 @@ public class HomeController {
         filterPencarianDinamis(txtCari.getText());
     }
 
-    // Menghitung statistik dashboard secara real-time dari DataRepository
     public void refreshDataData() {
         ArrayList<Produk> daftarProduk = DataRepository.getDaftarProduk();
         int totalJenis = daftarProduk.size();
@@ -171,7 +157,6 @@ public class HomeController {
         if (lblTotalStok != null) lblTotalStok.setText(String.valueOf(akumulasiStok));
         if (lblProdukBaru != null) lblProdukBaru.setText(String.valueOf(totalJenis));
         
-        // Picu pembuatan ulang komponen card promo berdiskon
         refreshCardPromoDiskon();
     }
 
@@ -186,6 +171,17 @@ public class HomeController {
     private void handleMenuTambah() {
         if (MainAppController.getInstance() != null) {
             MainAppController.getInstance().tampilkanTambah();
+        }
+    }
+
+    // FUNGSI KLIK AVATAR: Mengarahkan navigasi ke About lewat MainAppController global instance
+    @FXML
+    private void handleKeHalamanAbout(MouseEvent event) {
+        if (MainAppController.getInstance() != null) {
+            MainAppController.getInstance().tampilkanAbout();
+            System.out.println("Navigasi sukses: Avatar diklik -> Menuju Halaman About.");
+        } else {
+            System.out.println("Gagal navigasi: MainAppController belum siap!");
         }
     }
 }

@@ -36,6 +36,7 @@
                   <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Keunggulan Aplikasi" />
                   
                   <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="✓ Interface yang user-friendly dan mudah digunakan&#10;✓ Performa aplikasi yang cepat dan responsif&#10;✓ Dukungan penuh untuk manajemen inventori&#10;✓ Tampilan modern dengan desain yang menarik" textAlignment="LEFT" wrapText="true" />
+                  
                   <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Kelompok Kami" />
                   
                   <GridPane alignment="CENTER" hgap="20.0" vgap="20.0" styleClass="team-grid">
