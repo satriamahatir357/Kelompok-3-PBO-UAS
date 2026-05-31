@@ -6,11 +6,14 @@ import com.produk.model.DataRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ListCell;
-import javafx.scene.layout.VBox; // Diimport untuk menghubungkan box besar pembungkus diskon
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class HomeController {
@@ -20,20 +23,143 @@ public class HomeController {
     @FXML private Label lblProdukBaru;
     @FXML private TextField txtCari;
 
-    // 1. HUBUNGKAN ID BOX BESAR: Pastikan di FXML, boks besar Produk Diskon diberi id="boxDiskon"
-    @FXML private VBox boxDiskon;
+    // FXML Inject untuk komponen area tabel live search dinamis (Atas)
+    @FXML private VBox boxHasilCari;
+    @FXML private TableView<Produk> tblHasilCari;
+    @FXML private TableColumn<Produk, String> colNama;
+    @FXML private TableColumn<Produk, Double> colHarga;
+    @FXML private TableColumn<Produk, Integer> colStok;
+    @FXML private TableColumn<Produk, String> colDiskon;
 
-    // initialize() otomatis berjalan saat halaman home dimuat pertama kali
+    // FXML Inject untuk kontainer HBox tempat Card Promo nongol (Bawah)
+    @FXML private HBox containerCardDiskon;
+
     @FXML
     public void initialize() {
+        // 1. Hubungkan variabel properti model ke kolom TableView pencarian
+        if (colNama != null) colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        if (colStok != null) colStok.setCellValueFactory(new PropertyValueFactory<>("stok"));
+        if (colDiskon != null) colDiskon.setCellValueFactory(new PropertyValueFactory<>("diskon"));
+
+        // 2. Format kolom harga agar desimal murni tanpa format ilmiah huruf E
+        if (colHarga != null) {
+            colHarga.setCellValueFactory(new PropertyValueFactory<>("harga"));
+            colHarga.setCellFactory(column -> new TableCell<Produk, Double>() {
+                @Override
+                protected void updateItem(Double harga, boolean empty) {
+                    super.updateItem(harga, empty);
+                    if (empty || harga == null) {
+                        setText(null);
+                    } else {
+                        setText(String.format("%,.0f", harga).replace(',', '.')); 
+                    }
+                }
+            });
+        }
+
+        // 3. LIVE SEARCH LISTENER
+        if (txtCari != null) {
+            txtCari.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterPencarianDinamis(newValue);
+            });
+        }
+
+        // Jalankan kalkulasi angka statistik awal & generate card promo pertama
         refreshDataData();
-        tampilkanDaftarDiskon(); // Jalankan fungsi untuk merender list produk diskon
     }
 
-    // FUNGSI UTAMA: Menghitung statistik produk secara real-time dari DataRepository
+    // FUNGSI UTAMA 1: Membuat Card/Kotak Promo secara dinamis (Tinggi dikunci aman)
+    public void refreshCardPromoDiskon() {
+        if (containerCardDiskon == null) return;
+        
+        // Bersihkan area lama agar card tidak ter-duplikasi saat data diupdate
+        containerCardDiskon.getChildren().clear();
+
+        ArrayList<Produk> semuaProduk = DataRepository.getDaftarProduk();
+
+        for (Produk p : semuaProduk) {
+            // Validasi: Hanya buatkan card jika produk punya diskon (bukan strip atau kosong)
+            if (p.getDiskon() != null && !p.getDiskon().equals("-") && !p.getDiskon().trim().isEmpty()) {
+                
+                // Pembuatan container Box Card secara dynamic
+                VBox card = new VBox();
+                card.setSpacing(6.0);
+                card.setStyle(
+                    "-fx-background-color: #1a202c; " + 
+                    "-fx-background-radius: 12px; " +
+                    "-fx-border-color: #ff0055; " +    // Aksen warna pink neon khas diskon promo
+                    "-fx-border-width: 1.5px; " +
+                    "-fx-border-radius: 12px; " +
+                    "-fx-padding: 12px; " +
+                    "-fx-min-width: 140px; " +          
+                    "-fx-pref-width: 140px; " +
+                    "-fx-min-height: 130px; " +        // Mengunci tinggi minimal card agar teks tidak amblas kebawah
+                    "-fx-pref-height: 130px; " +
+                    "-fx-alignment: center;"
+                );
+
+                // Elemen 1: Judul Nama Produk
+                Label lblNama = new Label(p.getNama());
+                lblNama.setStyle("-fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 14px; -fx-text-alignment: center;");
+                lblNama.setWrapText(true); 
+
+                // Elemen 2: Teks Harga Berformat Rupiah Bersih
+                String hargaFormat = String.format("%,.0f", p.getHarga()).replace(',', '.');
+                Label lblHargaProduk = new Label("Rp " + hargaFormat);
+                lblHargaProduk.setStyle("-fx-text-fill: #cbd5e0; -fx-font-size: 12px;");
+
+                // Elemen 3: Badge Diskon Menyala
+                Label lblBadgeDiskon = new Label("DISKON " + p.getDiskon());
+                lblBadgeDiskon.setStyle(
+                    "-fx-background-color: #ffcc00; " +
+                    "-fx-text-fill: #000000; " +
+                    "-fx-font-weight: bold; " +
+                    "-fx-font-size: 11px; " +
+                    "-fx-padding: 4px 8px; " +
+                    "-fx-background-radius: 5px;"
+                );
+
+                // Masukkan komponen teks ke dalam wadah card
+                card.getChildren().addAll(lblNama, lblHargaProduk, lblBadgeDiskon);
+
+                // Tampilkan card promo ke dalam HBox kontainer utama halaman Home
+                containerCardDiskon.getChildren().add(card);
+            }
+        }
+    }
+
+    // FUNGSI UTAMA 2: Live Search menyaring semua produk yang mengandung huruf yang diketik
+    private void filterPencarianDinamis(String teksInput) {
+        String kataKunci = teksInput.trim().toLowerCase();
+
+        if (kataKunci.isEmpty()) {
+            boxHasilCari.setVisible(false);
+            boxHasilCari.setManaged(false);
+            return;
+        }
+
+        ArrayList<Produk> semuaProduk = DataRepository.getDaftarProduk();
+        ObservableList<Produk> hasilFilter = FXCollections.observableArrayList();
+
+        for (Produk p : semuaProduk) {
+            if (p.getNama() != null && p.getNama().toLowerCase().contains(kataKunci)) {
+                hasilFilter.add(p);
+            }
+        }
+
+        tblHasilCari.setItems(hasilFilter);
+        boxHasilCari.setVisible(true);
+        boxHasilCari.setManaged(true);
+    }
+
+    @FXML
+    private void handleCariProduk() {
+        filterPencarianDinamis(txtCari.getText());
+    }
+
+    // Menghitung statistik dashboard secara real-time dari DataRepository
     public void refreshDataData() {
         ArrayList<Produk> daftarProduk = DataRepository.getDaftarProduk();
-        
         int totalJenis = daftarProduk.size();
         
         int akumulasiStok = 0;
@@ -41,101 +167,18 @@ public class HomeController {
             akumulasiStok += p.getStok();
         }
 
-        // 2. PERBAIKAN LOGIKA: Menyaring string diskon "0", "0%", "none", ataupun tanda strip "-"
-        int totalDiskon = 0;
-        for (Produk p : daftarProduk) {
-            String diskon = p.getDiskon();
-            if (diskon != null && !diskon.trim().isEmpty() && 
-                !diskon.equals("0") && !diskon.equalsIgnoreCase("0%") && 
-                !diskon.equalsIgnoreCase("none") && !diskon.equals("-")) {
-                totalDiskon++;
-            }
-        }
-
         if (lblTotalProduk != null) lblTotalProduk.setText(String.valueOf(totalJenis));
         if (lblTotalStok != null) lblTotalStok.setText(String.valueOf(akumulasiStok));
+        if (lblProdukBaru != null) lblProdukBaru.setText(String.valueOf(totalJenis));
         
-        // Sekarang angka boks "Produk Baru" di UI hanya akan menghitung produk dengan diskon aktif
-        if (lblProdukBaru != null) lblProdukBaru.setText(String.valueOf(totalDiskon));
-    }
-
-    // 3. FUNGSI BARU: Menyaring produk diskon dan memasukkannya ke dalam box besar di UI
-    private void tampilkanDaftarDiskon() {
-        if (boxDiskon == null) return;
-
-        // Ambil data gudang global
-        ArrayList<Produk> daftarProduk = DataRepository.getDaftarProduk();
-        
-        // Buat tempat penampung khusus item yang diskonnya aktif
-        ArrayList<Produk> listTerfilter = new ArrayList<>();
-        for (Produk p : daftarProduk) {
-            String diskon = p.getDiskon();
-            // PERBAIKAN FILTER: Menambahkan kondisi !diskon.equals("-") agar produk tak berdiskon tidak lolos
-            if (diskon != null && !diskon.trim().isEmpty() && 
-                !diskon.equals("0") && !diskon.equalsIgnoreCase("0%") && 
-                !diskon.equalsIgnoreCase("none") && !diskon.equals("-")) {
-                listTerfilter.add(p);
-            }
-        }
-
-        // Buat komponen ListView baru secara dinamis lewat kode
-        ListView<Produk> listViewDiskon = new ListView<>();
-        listViewDiskon.getItems().addAll(listTerfilter);
-        
-        // Atur ukuran ListView agar memenuhi area dalam boks melengkung bawaan FXML kamu
-        listViewDiskon.setPrefHeight(300); 
-        listViewDiskon.setMaxWidth(Double.MAX_VALUE);
-
-        // Kustomisasi style tampilan baris teks di dalam ListView
-        listViewDiskon.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Produk produk, boolean empty) {
-                super.updateItem(produk, empty);
-
-                if (empty || produk == null) {
-                    setText(null);
-                    setStyle("-fx-background-color: transparent;");
-                } else {
-                    // Format tampilan nominal harga ke Rupiah (Rp #.###)
-                    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-                    symbols.setGroupingSeparator('.');
-                    DecimalFormat df = new DecimalFormat("Rp #,##0", symbols);
-                    String hargaFormat = df.format(produk.getHarga());
-
-                    // PERBAIKAN TEKS: Mengganti emoji label "🏷️" menjadi text tag "[Diskon]" demi menghindari kotak kosong/pecah bawaan font OS
-                    setText(" [Diskon]  " + produk.getNama() + "   |   Potongan: " + produk.getDiskon() + "   |   Harga Asli: " + hargaFormat);
-                    
-                    // Styling: Teks putih, ukuran pas, background baris transparan agar menyatu dengan boks biru tuamu
-                    setStyle("-fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 12px; -fx-background-color: transparent;");
-                }
-            }
-        });
-
-        // Setel agar background utama dari ListView bawaan JavaFX menjadi transparan/mengikuti warna boks luarnya
-        listViewDiskon.setStyle("-fx-background-color: transparent; -fx-control-inner-background: transparent; -fx-background-insets: 0; -fx-padding: 10;");
-
-        // Masukkan komponen ListView yang sudah jadi ke dalam boks kontainer FXML kamu
-        boxDiskon.getChildren().clear(); // Bersihkan sisa renderan lama jika ada
-        boxDiskon.getChildren().add(listViewDiskon);
+        // Picu pembuatan ulang komponen card promo berdiskon
+        refreshCardPromoDiskon();
     }
 
     @FXML
     private void handleMenuTambah() {
         if (MainAppController.getInstance() != null) {
             MainAppController.getInstance().tampilkanTambah();
-        } else {
-            System.out.println("MainAppController belum siap!");
-        }
-    }
-
-    @FXML
-    private void handleCariProduk() {
-        String kataKunci = txtCari.getText().trim();
-        if (MainAppController.getInstance() != null) {
-            MainAppController.getInstance().tampilkanDaftar();
-            System.out.println("Mencari produk dengan kata kunci: " + kataKunci);
-        } else {
-            System.out.println("MainAppController haven't set up yet!");
         }
     }
 }
