@@ -1,3 +1,5 @@
+/* LATAR BELAKANG & LAYOUT UTAMA */
+
 /* Latar Belakang Utama Halaman Dashboard (Biru Elektrik Cerah) */
 .home-root {
     -fx-background-color: #3b42f4;
@@ -7,7 +9,7 @@
 /* Sisi Top Bar Atas (Hitam Pekat Minimalis) */
 .top-bar {
     -fx-background-color: #0b0c16;
-    -fx-padding: 8px 20px; 
+    -fx-padding: 5px 20px;
 }
 
 .top-bar-left {
@@ -23,13 +25,16 @@
     -fx-letter-spacing: 1px;
 }
 
-/* Lingkaran Kepala User Avatar di Top Bar */
+/* Lingkaran Kepala User Avatar di Top Bar (Rasio Bulat Sempurna 1:1) */
 .avatar-icon {
-    -fx-width: 35px; /* Sesuaikan ukuran lingkaran avatar */
-    -fx-height: 35px;
-    -fx-min-width: 35px;
-    -fx-min-height: 35px;
+    -fx-width: 40px; 
+    -fx-height: 40px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
     
+    /* Memanggil gambar avatar kelompok */
     -fx-background-image: url("images/avatar.png"); 
     -fx-background-size: cover;
     -fx-background-position: center;
@@ -41,6 +46,14 @@
     /* Efek kursor tangan saat diarahkan ke avatar */
     -fx-cursor: hand; 
 }
+
+/* Wadah Konten Bagian Dalam */
+.dashboard-container {
+    -fx-padding: 20px 25px 25px 25px; 
+    -fx-background-color: transparent;
+}
+
+/* == SCROLLPANE UTAMA (DASHBOARD) == */
 
 /* ScrollPane Utama Pembungkus Dashboard (Scroll Ke Bawah) */
 .main-scroll {
@@ -67,11 +80,8 @@
     -fx-max-width: 6px;
 }
 
-/* Wadah Konten Bagian Dalam */
-.dashboard-container {
-    -fx-padding: 20px 25px 25px 25px; 
-    -fx-background-color: transparent;
-}
+
+/* == KARTU STATISTIK & AKSI (METRICS & ACTIONS) == */
 
 /* Pembungkus Judul + Kartu Metrik agar sejajar rapi */
 .metric-wrapper {
@@ -139,14 +149,16 @@
     -fx-font-weight: bold;
 }
 
-/* FIX: Kontainer Kotak Besar Produk Diskon DIEM TOTAL di Dashboard */
+/* == KONTAINER PRODUK DISKON (SLIDER) == */
+
+/* Kontainer Kotak Besar Produk Diskon DIEM TOTAL di Dashboard */
 .discount-container {
     -fx-background-color: #152c8a;
     -fx-background-radius: 16px;
     -fx-border-color: #000000;
     -fx-border-width: 2.5px;
     -fx-border-radius: 16px;
-    -fx-padding: 12px 15px; /* Memberikan padding ruang dalam */
+    -fx-padding: 12px 15px; 
     -fx-alignment: center-left;
 }
 
@@ -160,16 +172,24 @@
     -fx-background-color: transparent;
 }
 
-/* Desain Track Jalur Scrollbar Horizontal Tipis Elegan di dalam kontainer */
+/* Desain Track Jalur Scrollbar Horizontal Tipis Elegan di dalam kontainer promo */
 .promo-inner-scroll .scroll-bar:horizontal {
     -fx-background-color: #0b0c16;
     -fx-background-radius: 10px;
     -fx-padding: 1px;
+    -fx-pref-height: 6px;
+    -fx-min-height: 6px;
+    -fx-max-height: 6px;
 }
 .promo-inner-scroll .scroll-bar:horizontal .thumb {
     -fx-background-color: #ff0055; /* Warna pink neon penunjuk scroll */
     -fx-background-radius: 10px;
+    -fx-pref-height: 5px;
+    -fx-min-height: 5px;
+    -fx-max-height: 5px;
 }
+
+/* == TABEL LIVE SEARCH & SCROLLBAR INTERNALNYA ==*/
 
 /* STYLE STRUKTUR TABEL LIVE SEARCH */
 .search-table-view {
@@ -212,4 +232,26 @@
     -fx-text-fill: #ffffff;
     -fx-font-size: 13px;
     -fx-alignment: center-left;
+}
+
+/* ScrollBar Tipis Elegan Khusus untuk Tabel Hasil Pencarian */
+.search-table-view .scroll-bar:vertical,
+.search-table-view .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+    -fx-min-width: 8px;
+    -fx-max-width: 8px;
+    -fx-pref-height: 8px;
+    -fx-min-height: 8px;
+    -fx-max-height: 8px;
+}
+.search-table-view .scroll-bar .thumb {
+    -fx-background-color: #8493ff;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 6px;
+    -fx-min-width: 6px;
+    -fx-max-width: 6px;
+    -fx-pref-height: 6px;
+    -fx-min-height: 6px;
+    -fx-max-height: 6px;
 }
