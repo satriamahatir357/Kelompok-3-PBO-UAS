@@ -7,7 +7,7 @@
 /* Bar Hitam Atas */
 .top-header {
     -fx-background-color: #0d0d0d;
-    -fx-padding: 10px 20px;
+    -fx-padding: 15px 20px;
 }
 .top-header-text {
     -fx-font-size: 13px;
