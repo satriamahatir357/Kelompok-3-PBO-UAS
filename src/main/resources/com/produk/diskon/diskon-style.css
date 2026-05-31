@@ -1,3 +1,5 @@
+/* == LAYOUT UTAMA & STRUKTUR HALAMAN == */
+
 .diskon-page {
     -fx-background-color: #302cff;
     -fx-padding: 35px 64px;
@@ -13,6 +15,7 @@
     -fx-max-width: 790px;
 }
 
+/* Wadah Luar Tabel */
 .table-box {
     -fx-background-color: #1e3495;
     -fx-border-color: black;
@@ -42,6 +45,9 @@
     -fx-border-radius: 6px;
     -fx-font-size: 14px;
 }
+
+
+/* == DESAIN UTAMA KOMPONEN TABLEVIEW == */
 
 .produk-table {
     -fx-background-color: transparent;
@@ -79,6 +85,42 @@
     -fx-font-size: 14px;
     -fx-border-color: transparent;
 }
+
+
+/* == INTEGRASI CUSTOM SCROLLBAR == */
+
+/* Mengatur ukuran track scrollbar horizontal & vertikal menjadi tipis */
+.produk-table .scroll-bar:vertical,
+.produk-table .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+    -fx-min-width: 8px;
+    -fx-max-width: 8px;
+    -fx-pref-height: 8px;
+    -fx-min-height: 8px;
+    -fx-max-height: 8px;
+}
+
+/* Mengatur desain jempol (thumb) penunjuk scroll */
+.produk-table .scroll-bar .thumb {
+    -fx-background-color: #8493ff;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 6px;
+    -fx-min-width: 6px;
+    -fx-max-width: 6px;
+    -fx-pref-height: 6px;
+    -fx-min-height: 6px;
+    -fx-max-height: 6px;
+}
+
+/* Menghilangkan tombol panah increment/decrement bawaan scrollbar */
+.produk-table .scroll-bar:vertical .increment-button,
+.produk-table .scroll-bar:vertical .decrement-button {
+    -fx-padding: 0;
+}
+
+
+/* == INPUT AREA, BUTTONS, & LABELS == */
 
 .diskon-label {
     -fx-text-fill: white;
