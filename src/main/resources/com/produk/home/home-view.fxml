@@ -51,7 +51,7 @@
         
         <VBox spacing="10.0" VBox.vgrow="ALWAYS">
             <Label text="Produk Diskon" styleClass="section-title"/>
-            <VBox styleClass="discount-container" VBox.vgrow="ALWAYS">
+            <VBox fx:id="boxDiskon" styleClass="discount-container" VBox.vgrow="ALWAYS">
             </VBox>
         </VBox>
         
