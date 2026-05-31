@@ -44,10 +44,16 @@
     -fx-background-color: #0b0c16;
     -fx-background-radius: 10px;
     -fx-padding: 2px;
+    -fx-pref-width: 8px;
+    -fx-min-width: 8px;
+    -fx-max-width: 8px;
 }
 .main-scroll .scroll-bar:vertical .thumb {
     -fx-background-color: #8493ff;
     -fx-background-radius: 10px;
+    -fx-pref-width: 6px;
+    -fx-min-width: 6px;
+    -fx-max-width: 6px;
 }
 
 /* Wadah Konten Bagian Dalam */
