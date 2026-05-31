@@ -13,7 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 public class DiskonController {
 
@@ -38,15 +42,35 @@ public class DiskonController {
     @FXML
     public void initialize() {
         // 1. PETAKAN KOLOM: Menghubungkan kolom tabel fxml dengan properti getter pada kelas Produk
-        // Variabel di dalam ("...") harus sama persis dengan nama properti di kelas Produk.java
         colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colHarga.setCellValueFactory(new PropertyValueFactory<>("harga"));
         colStok.setCellValueFactory(new PropertyValueFactory<>("stok"));
 
+        // FIX LOGIC: Mengubah harga di tabel diskon menjadi format Rupiah bersih tanpa huruf eksponensial (E)
+        colHarga.setCellFactory(column -> {
+            return new TableCell<>() {
+                @Override
+                protected void updateItem(Double item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                        symbols.setGroupingSeparator('.'); // Menggunakan titik untuk ribuan
+                        
+                        DecimalFormat df = new DecimalFormat("Rp #,##0", symbols);
+                        df.setMaximumFractionDigits(0);
+                        
+                        setText(df.format(item));
+                    }
+                }
+            };
+        });
+
         // 2. AMBIL DATA: Memanggil fungsi untuk menarik data produk dari gudang utama
         muatDataDariGudangPusat();
 
-        // 3. SEtUP SEARCH & NOMOR: Menyalakan fitur pencarian dan penomoran otomatis
+        // 3. SETUP SEARCH & NOMOR: Menyalakan fitur pencarian dan penomoran otomatis
         setupFiturPencarianDanNomor();
     }
 
@@ -141,11 +165,14 @@ public class DiskonController {
             double potongan = hargaAsli * (persenDiskon / 100);
             double hargaAkhir = hargaAsli - potongan;
 
-            // 5. TAMPILKAN SEBAGAI SIMULASI (Warna Biru Info)
-            // Format %,.0f berguna memberikan titik pemisah ribuan otomatis (cth: Rp 15.000.000)
+            // 5. FIX TAMPILAN SIMULASI: Gunakan DecimalFormat agar format ribuan Indonesia (.) bukan internasional (,)
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setGroupingSeparator('.');
+            DecimalFormat df = new DecimalFormat("Rp #,##0", symbols);
+
             lblHargaAkhir.setStyle("-fx-text-fill: #3498db; -fx-font-weight: bold;"); 
-            lblHargaAkhir.setText(String.format("[Simulasi] Harga Akhir %s: Rp %,.0f", 
-                    produkTerpilih.getNama(), hargaAkhir));
+            lblHargaAkhir.setText(String.format("[Simulasi] Harga Akhir %s: %s", 
+                    produkTerpilih.getNama(), df.format(hargaAkhir)));
 
         } catch (NumberFormatException e) {
             // Berjalan jika user memasukkan input teks/huruf/simbol ke dalam kotak diskon
@@ -189,16 +216,20 @@ public class DiskonController {
             double potongan = hargaAsli * (persenDiskon / 100);
             double hargaAkhir = hargaAsli - potongan;
 
-            // 4. KUNCI DATA: Menyimpan teks diskon permanen langsung ke dalam properti objek Produk tersebut
-            // Ini berdampak langsung pada halaman "Lihat Daftar Produk" (Kolom diskon berubah dari '-' jadi isi nilai ini)
-            String teksDiskonUntukDaftar = String.format("%.0f%% (Rp %,.0f)", persenDiskon, hargaAkhir);
+            // 4. FIX FORMAT TEXT DISKON: Memasukkan data ke list dengan pemisah ribuan titik Indonesia
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setGroupingSeparator('.');
+            DecimalFormat df = new DecimalFormat("Rp #,##0", symbols);
+
+            // Output yang disimpan menjadi: "10% (Rp 18.000.000)"
+            String teksDiskonUntukDaftar = String.format("%.0f%% (%s)", persenDiskon, df.format(hargaAkhir));
             produkTerpilih.setDiskon(teksDiskonUntukDaftar);
 
             // 5. BERI FEEDBACK SUKSES (Warna Hijau Berhasil)
             lblHargaAkhir.setStyle("-fx-text-fill: #2ecc71; -fx-font-weight: bold;"); 
             lblHargaAkhir.setText(String.format("Sukses! Diskon untuk '%s' telah resmi ditetapkan.", produkTerpilih.getNama()));
             
-            // 6. REFRESH VISUAL: Memaksa JavaFX menggambar ulang isi tabel detik ini juga agar perubahan langsung nampak
+            // 6. REFRESH VISUAL
             tableProduk.refresh();
 
         } catch (NumberFormatException e) {

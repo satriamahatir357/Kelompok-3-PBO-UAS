@@ -13,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Comparator;
 
 public class DaftarController {
@@ -53,6 +55,30 @@ public class DaftarController {
             };
             cell.getStyleClass().add("col-nama-kiri");
             return cell;
+        });
+
+        // FIX LOGIC: Mengubah harga menjadi format Rupiah bersih tanpa huruf eksponensial (E)
+        colHarga.setCellFactory(column -> {
+            return new TableCell<>() {
+                @Override
+                protected void updateItem(Double item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        // Mengatur konfigurasi separator lokal Indonesia
+                        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                        symbols.setGroupingSeparator('.'); // Menggunakan titik untuk ribuan
+                        
+                        // Membuat format dengan awalan Rp dan pola ribuan
+                        DecimalFormat df = new DecimalFormat("Rp #,##0", symbols);
+                        df.setMaximumFractionDigits(0); // Memastikan tidak ada pecahan desimal di belakang koma
+                        
+                        // Tampilkan hasil string ke dalam cell tabel
+                        setText(df.format(item));
+                    }
+                }
+            };
         });
 
         // 2. Format Kolom Diskon: AMBIL NILAI RIIL DARI OBJEK PRODUK (MANDIRI)
