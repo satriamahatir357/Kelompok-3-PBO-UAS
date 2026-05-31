@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.GridPane?>
@@ -20,82 +21,101 @@
          </children>
       </HBox>
       
-      <VBox alignment="CENTER" prefHeight="705.0" prefWidth="900.0" spacing="15.0" style="-fx-padding: 20px;" VBox.vgrow="ALWAYS">
-         <children>
-            <Label styleClass="about-title" text="About Aplikasi" />
-            
-            <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="Aplikasi Manajemen Produk adalah sistem yang dirancang untuk membantu pengguna dalam mengelola data produk secara lebih mudah, cepat, dan terorganisir. Aplikasi ini memiliki fitur seperti menambah, mengedit, menghapus, dan mencari data produk sehingga proses pengelolaan menjadi lebih efisien." textAlignment="CENTER" wrapText="true" />
-            
-            <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Kelompok Kami" />
-            
-            <GridPane alignment="CENTER" hgap="20.0" vgap="20.0" styleClass="team-grid">
+      <ScrollPane fitToWidth="true" styleClass="scroll-pane" style="-fx-padding: 0px;" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-padding: 20px;">
                <children>
+                  <Label styleClass="about-title" text="About Aplikasi" />
                   
-                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
-                           <image><Image url="@images/Andhika.jpeg" /></image>
-                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Andhika Annas Satria" />
-                     </children>
-                  </VBox>
+                  <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="Aplikasi Manajemen Produk adalah sistem yang dirancang untuk membantu pengguna dalam mengelola data produk secara lebih mudah, cepat, dan terorganisir. Aplikasi ini memiliki fitur seperti menambah, mengedit, menghapus, dan mencari data produk sehingga proses pengelolaan menjadi lebih efisien." textAlignment="CENTER" wrapText="true" />
                   
-                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
-                           <image><Image url="@images/Anggito.jpeg" /></image>
-                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Anggito Satrio Wicaksono" />
-                     </children>
-                  </VBox>
+                  <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Fitur Utama Aplikasi" />
                   
-                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
-                           <image><Image url="@images/Rafi.jpeg" /></image>
-                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Rasya Zaka Arrafi" />
-                     </children>
-                  </VBox>
+                  <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="• Tambah Produk: Mudah menambahkan produk baru dengan informasi lengkap seperti nama, harga, dan stok&#10;• Daftar/Edit Produk: Melihat daftar semua produk dan mengedit informasi produk yang sudah ada&#10;• Hapus Produk: Menghapus produk yang tidak diperlukan dari sistem dengan aman&#10;• Cari Produk: Fitur pencarian cepat untuk menemukan produk berdasarkan nama atau kategori&#10;• Diskon Produk: Mengelola dan menerapkan diskon khusus untuk produk-produk tertentu" textAlignment="LEFT" wrapText="true" />
                   
-                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
-                           <image><Image url="@images/Wahyu.jpeg" /></image>
-                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Wahyu Septiya Ardana" />
-                     </children>
-                  </VBox>
+                  <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Keunggulan Aplikasi" />
                   
-                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
-                           <image><Image url="@images/Jois.jpeg" /></image>
-                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Jois Miranda Agunning Putri" />
-                     </children>
-                  </VBox>
+                  <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="✓ Interface yang user-friendly dan mudah digunakan&#10;✓ Performa aplikasi yang cepat dan responsif&#10;✓ Dukungan penuh untuk manajemen inventori&#10;✓ Tampilan modern dengan desain yang menarik" textAlignment="LEFT" wrapText="true" />
+                  <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Kelompok Kami" />
                   
-                  <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <GridPane alignment="CENTER" hgap="20.0" vgap="20.0" styleClass="team-grid">
                      <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
-                           <image><Image url="@images/Okta.png" /></image>
-                           <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
-                        </ImageView>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Tri Oktavia Ramadhani" />
+                        
+                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                                 <image><Image url="@images/Andhika.jpeg" /></image>
+                                 <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
+                              </ImageView>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Andhika Annas Satria" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                                 <image><Image url="@images/Anggito.jpeg" /></image>
+                                 <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
+                              </ImageView>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Anggito Satrio Wicaksono" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                                 <image><Image url="@images/Rafi.jpeg" /></image>
+                                 <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
+                              </ImageView>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Rasya Zaka Arrafi" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                                 <image><Image url="@images/Wahyu.jpeg" /></image>
+                                 <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
+                              </ImageView>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Wahyu Septiya Ardana" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                                 <image><Image url="@images/Jois.jpeg" /></image>
+                                 <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
+                              </ImageView>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Jois Miranda Agunning Putri" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
+                                 <image><Image url="@images/Okta.png" /></image>
+                                 <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
+                              </ImageView>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Tri Oktavia Ramadhani" />
+                           </children>
+                        </VBox>
+                        
                      </children>
-                  </VBox>
+                  </GridPane>
+                  
+                  <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Teknologi yang Digunakan" />
+                  
+                  <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="• Bahasa Pemrograman: Java&#10;• Framework UI: JavaFX&#10;• Build Tool: Maven&#10;• IDE: Visual Studio Code" textAlignment="LEFT" wrapText="true" />
+                  
+                  <Label styleClass="about-title" style="-fx-padding: 15px 0 0 0;" text="Terima Kasih" />
+                  
+                  <Label styleClass="app-desc" maxWidth="680.0" prefWidth="680.0" text="Terimakasih telah menggunakan Aplikasi Manajemen Produk kami. Semoga aplikasi ini dapat membantu Anda dalam mengelola produk dengan lebih efisien. Untuk saran dan masukan, silahkan hubungi tim kami melalui aplikasi ini." textAlignment="CENTER" wrapText="true" style="-fx-padding: 0 0 30px 0;" />
                   
                </children>
-            </GridPane>
-            
-         </children>
-      </VBox>
+            </VBox>
+         </content>
+      </ScrollPane>
       
    </children>
 </VBox>

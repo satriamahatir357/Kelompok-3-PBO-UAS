@@ -15,6 +15,41 @@
     -fx-font-weight: bold;
 }
 
+/* ScrollPane Styling */
+.scroll-pane {
+    -fx-background-color: #2434f0;
+    -fx-padding: 0px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #2434f0;
+}
+
+.scroll-pane:focused {
+    -fx-background-color: #2434f0;
+}
+
+/* ScrollBar Styling */
+.scroll-bar {
+    -fx-background-color: #2434f0;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #1620b0;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #0f1580;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-padding: 0;
+}
+
 /* Judul & Deskripsi Teks Putih */
 .about-title {
     -fx-font-size: 24px;
