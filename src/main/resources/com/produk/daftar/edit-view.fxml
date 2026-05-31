@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" 
+      stylesheets="@daftar-style.css"
+      styleClass="edit-popup-root" 
+      prefWidth="450" 
+      prefHeight="430" 
+      xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.produk.daftar.EditController">
+
+    <Label text="Edit Produk" styleClass="edit-popup-title"/>
+
+    <VBox spacing="8" alignment="CENTER_LEFT" maxWidth="350">
+        <Label text="Nama" styleClass="edit-popup-label"/>
+        <TextField fx:id="txtNama" styleClass="edit-popup-field"/>
+        
+        <Label text="Harga" styleClass="edit-popup-label" />
+        <TextField fx:id="txtHarga" styleClass="edit-popup-field"/>
+        
+        <Label text="Stok" styleClass="edit-popup-label"/>
+        <TextField fx:id="txtStok" styleClass="edit-popup-field"/>
+    </VBox>
+
+    <HBox spacing="15" alignment="CENTER_RIGHT" maxWidth="350">
+        <Button text="Batal" onAction="#onBatalClick" styleClass="btn-popup-batal"/>
+        <Button text="Simpan" onAction="#onSimpanClick" styleClass="btn-popup-simpan"/>
+    </HBox>
+</VBox>

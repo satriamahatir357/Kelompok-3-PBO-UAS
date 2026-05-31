@@ -39,4 +39,4 @@
 .team-photo {
     /* Memberikan efek bayangan lembut di sekeliling bingkai foto */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 4);
-}~
+}

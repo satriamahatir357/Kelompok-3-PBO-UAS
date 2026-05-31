@@ -8,14 +8,22 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Comparator;
+import java.util.Optional;
 
 public class DaftarController {
 
@@ -30,17 +38,14 @@ public class DaftarController {
     @FXML private TextField txtSearch;
     @FXML private ComboBox<String> cmbUrutkan;
 
-    // List pusat penampung data asli dari gudang repositori
     private final ObservableList<Produk> masterData = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // 1. Pemetaan properti dari objek model ke kolom tabel
         colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colHarga.setCellValueFactory(new PropertyValueFactory<>("harga"));
         colStok.setCellValueFactory(new PropertyValueFactory<>("stok"));
 
-        // Membuat kolom nama produk agak bergeser ke kiri agar rapi dibaca
         colNama.setCellFactory(column -> {
             TableCell<Produk, String> cell = new TableCell<>() {
                 @Override
@@ -57,7 +62,7 @@ public class DaftarController {
             return cell;
         });
 
-        // FIX LOGIC: Mengubah harga menjadi format Rupiah bersih tanpa huruf eksponensial (E)
+        // Format Rupiah rapi
         colHarga.setCellFactory(column -> {
             return new TableCell<>() {
                 @Override
@@ -66,31 +71,21 @@ public class DaftarController {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        // Mengatur konfigurasi separator lokal Indonesia
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-                        symbols.setGroupingSeparator('.'); // Menggunakan titik untuk ribuan
-                        
-                        // Membuat format dengan awalan Rp dan pola ribuan
+                        symbols.setGroupingSeparator('.');
                         DecimalFormat df = new DecimalFormat("Rp #,##0", symbols);
-                        df.setMaximumFractionDigits(0); // Memastikan tidak ada pecahan desimal di belakang koma
-                        
-                        // Tampilkan hasil string ke dalam cell tabel
+                        df.setMaximumFractionDigits(0);
                         setText(df.format(item));
                     }
                 }
             };
         });
 
-        // 2. Format Kolom Diskon: AMBIL NILAI RIIL DARI OBJEK PRODUK (MANDIRI)
         colDiskon.setCellValueFactory(new PropertyValueFactory<>("diskon"));
 
-        // 3. Konstruksi Tombol Aksi Kustom (📝 & 🗑️)
+        // Mengaktifkan konstruksi tombol aksi edit dan hapus baru
         buatKolomAksi();
-
-        // 4. Membaca Data Gudang Utama
         muatDataAwal();
-
-        // 5. AKTIFKAN FITUR PENCARIAN & PENGURUTAN SECARA SEKALIGUS
         setupFiturCariDanUrut();
     }
 
@@ -100,62 +95,42 @@ public class DaftarController {
     }
 
     private void setupFiturCariDanUrut() {
-        // A. Bungkus data utama ke FilteredList (untuk memfilter teks)
         FilteredList<Produk> filteredData = new FilteredList<>(masterData, p -> true);
 
-        // B. Dengarkan setiap ketikan user di kolom TextField 'txtSearch'
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(produk -> {
-                // Jika kolom pencarian kosong, tampilkan semua produk
                 if (newValue == null || newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
-
                 String kataKunci = newValue.toLowerCase().trim();
-
-                // COCOKKAN: Berdasarkan nama produk atau harga barang
                 if (produk.getNama().toLowerCase().contains(kataKunci)) {
                     return true; 
                 } else if (String.valueOf(produk.getHarga()).contains(kataKunci)) {
                     return true;
                 }
-                
-                return false; // Tidak cocok
+                return false;
             });
-            
-            // Setiap kali filter berubah, nomor urut (1, 2, 3) akan dihitung ulang secara otomatis
             tableProduk.refresh();
         });
 
-        // C. Bungkus FilteredList ke SortedList (untuk mengurutkan baris)
         SortedList<Produk> sortedData = new SortedList<>(filteredData);
 
-        // D. Dengarkan setiap perubahan pilihan di ComboBox 'cmbUrutkan'
         cmbUrutkan.valueProperty().addListener((observable, oldValue, pilihanBaru) -> {
             if (pilihanBaru == null) return;
-
             sortedData.setComparator((p1, p2) -> {
                 switch (pilihanBaru) {
-                    case "A-Z":
-                        return p1.getNama().compareToIgnoreCase(p2.getNama());
-                    case "Z-A":
-                        return p2.getNama().compareToIgnoreCase(p1.getNama());
-                    case "Harga Termurah":
-                        return Double.compare(p1.getHarga(), p2.getHarga());
-                    case "Harga Termahal":
-                        return Double.compare(p2.getHarga(), p1.getHarga());
-                    default:
-                        return 0;
+                    case "A-Z": return p1.getNama().compareToIgnoreCase(p2.getNama());
+                    case "Z-A": return p2.getNama().compareToIgnoreCase(p1.getNama());
+                    case "Harga Termurah": return Double.compare(p1.getHarga(), p2.getHarga());
+                    case "Harga Termahal": return Double.compare(p2.getHarga(), p1.getHarga());
+                    default: return 0;
                 }
             });
-            
             tableProduk.refresh();
         });
 
-        // E. Pasang SortedList yang sudah dikombinasikan ke dalam TableView
         tableProduk.setItems(sortedData);
 
-        // F. LOGIKA NOMOR URUT DINAMIS (Mengikuti urutan list yang tampil di layar saat ini)
         colNomor.setCellValueFactory(column -> 
             new ReadOnlyObjectWrapper<>(tableProduk.getItems().indexOf(column.getValue()) + 1)
         );
@@ -166,24 +141,77 @@ public class DaftarController {
             @Override
             public TableCell<Produk, Void> call(final TableColumn<Produk, Void> param) {
                 return new TableCell<>() {
-                    private final Button btnEdit = new Button("📝");
-                    private final Button btnHapus = new Button("🗑️");
-                    private final HBox container = new HBox(8, btnEdit, btnHapus);
+                    private final Button btnEdit = new Button("✎");
+                    private final Button btnHapus = new Button("✕");
+                    private final HBox container = new HBox(12, btnEdit, btnHapus);
 
                     {
                         btnEdit.getStyleClass().add("btn-aksi-edit");
                         btnHapus.getStyleClass().add("btn-aksi-hapus");
                         container.setStyle("-fx-alignment: center;");
 
-                        // Logika interaktif tombol hapus ketika diklik
+                        // 1. LOGIKA TOMBOL EDIT (POP-UP MODAL SESUAI FIGMA)
+                        btnEdit.setOnAction(event -> {
+                            Produk produkDipilih = getTableView().getItems().get(getIndex());
+                            
+                            try {
+                                // Load file FXML modal edit
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-view.fxml"));
+                                Parent root = loader.load();
+                                
+                                // Ambil controller-nya dan kirim data produk terpilih
+                                EditController editController = loader.getController();
+                                editController.setProduk(produkDipilih);
+                                
+                                // Set up window pop-up baru (Stage)
+                                Stage stageModal = new Stage();
+                                stageModal.initModality(Modality.APPLICATION_MODAL); // Mengunci halaman belakangnya
+                                stageModal.initStyle(StageStyle.UNDECORATED);       // Menghilangkan frame bar atas bawaan OS windows
+                                stageModal.initOwner(btnEdit.getScene().getWindow());
+                                
+                                Scene scene = new Scene(root);
+                                stageModal.setScene(scene);
+                                stageModal.showAndWait(); // Tampilkan pop-up dan tunggu aksi user
+                                
+                                // Jika user mengklik simpan di pop-up, segarkan tabel
+                                if (editController.isStatusSimpanTerklik()) {
+                                    tableProduk.refresh();
+                                }
+                                
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+
+                        // 2. LOGIKA TOMBOL HAPUS (ALERT KONFIRMASI ACCORDING TO MOCKUP)
                         btnHapus.setOnAction(event -> {
                             Produk produkDipilih = getTableView().getItems().get(getIndex());
                             
-                            // Hapus langsung dari repositori data induk global
-                            DataRepository.getDaftarProduk().remove(produkDipilih); 
+                            // Inisialisasi jenis tombol secara manual sesuai urutan (OK dulu baru Cancel)
+                            ButtonType btnTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                            ButtonType btnTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
                             
-                            // Sinkronisasi ulang data lokal agar filter mendeteksi perubahan
-                            muatDataAwal(); 
+                            // Buat Alert tanpa jenis bawaan, kita masukkan tombol kustom kita sendiri
+                            Alert alertKonfirmasi = new Alert(AlertType.CONFIRMATION, "", btnTypeOK, btnTypeCancel);
+                            alertKonfirmasi.setTitle("Konfirmasi Pembatalan");
+                            alertKonfirmasi.setHeaderText("Hapus Produk Ini?");
+                            alertKonfirmasi.setContentText("Apakah Anda yakin ingin menghapus '" + produkDipilih.getNama() + "'?");
+                            
+                            // Menghilangkan frame/border putih jendela windows (Opsional, biar clean melengkung)
+                            Stage alertStage = (Stage) alertKonfirmasi.getDialogPane().getScene().getWindow();
+                            alertStage.initStyle(StageStyle.UNDECORATED); 
+                            
+                            // Ambil dialog pane-nya lalu injek file CSS nya ke sana
+                            DialogPane dialogPane = alertKonfirmasi.getDialogPane();
+                            dialogPane.getStylesheets().add(getClass().getResource("daftar-style.css").toExternalForm());
+                            
+                            // Membuka alert dan menunggu respon (OK / Cancel)
+                            Optional<ButtonType> keputusan = alertKonfirmasi.showAndWait();
+                            if (keputusan.isPresent() && keputusan.get() == btnTypeOK) {
+                                // Eksekusi hapus dari gudang utama data global jika memilih OK
+                                DataRepository.getDaftarProduk().remove(produkDipilih); 
+                                muatDataAwal(); // Refresh total list lokal
+                            }
                         });
                     }
 

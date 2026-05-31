@@ -93,27 +93,219 @@
     -fx-padding: 0 0 0 10px;
 }
 
-/* Desain tombol aksi mini di dalam tabel */
-.btn-aksi-edit {
-    -fx-background-color: #7f8c8d;
-    -fx-text-fill: white;
-    -fx-font-size: 10px;
+/* Style Dasar untuk Kedua Tombol Aksi */
+.btn-aksi-edit, .btn-aksi-hapus {
+    -fx-font-size: 14px;            /* Ukuran simbol diperbesar biar pas */
     -fx-font-weight: bold;
-    -fx-background-radius: 4px;
-    -fx-cursor: hand;
+    -fx-pref-width: 32px;           /* Dibikin kotak presisi (Square) */
+    -fx-pref-height: 32px;
+    -fx-background-radius: 8px;     /* Sudut melengkung halus modern */
+    -fx-cursor: hand;               /* Kursor berubah jadi tangan saat di-hover */
+    -fx-alignment: center;
+    -fx-padding: 0 0 2px 0;         /* Micro-adjustment posisi text biar pas di tengah */
+    
+    /* Efek bayangan halus di bawah tombol */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0.0, 0, 1);
 }
 
+/* --- TOMBOL EDIT (TEMA SILVER GRADIENT / GLOWING NEON) --- */
+.btn-aksi-edit {
+    -fx-background-color: linear-gradient(to bottom, #4a5568, #2d3748);
+    -fx-text-fill: #00ffcc;         /* Warna teks toska menyala biar match sama Alert lo */
+    -fx-border-color: #4a5568;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+/* Efek saat Kursor Berada di Atas Tombol Edit (Hover) */
+.btn-aksi-edit:hover {
+    -fx-background-color: linear-gradient(to bottom, #2d3748, #1a202c);
+    -fx-text-fill: #ffffff;         /* Teks berubah putih saat di-hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 255, 204, 0.4), 6, 0.0, 0, 0); /* Glow effect toska */
+}
+
+/* Efek saat Tombol Edit Diklik (Pressed) */
+.btn-aksi-edit:pressed {
+    -fx-background-color: #1a202c;
+    -fx-translate-y: 1px;           /* Efek tombol ambles ke dalam saat diklik */
+}
+
+
+/* --- TOMBOL HAPUS (TEMA RED NEON / DANGER EFFECT) --- */
 .btn-aksi-hapus {
-    -fx-background-color: #e74c3c;
-    -fx-text-fill: white;
-    -fx-font-size: 10px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 4px;
-    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #e74c3c, #c0392b);
+    -fx-text-fill: #ffffff;         /* Teks silang warna putih murni */
+    -fx-border-color: #e74c3c;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+/* Efek saat Kursor Berada di Atas Tombol Hapus (Hover) */
+.btn-aksi-hapus:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff4d4d, #ff0000);
+    -fx-text-fill: #ffffff;
+    /* Glow effect merah menyala */
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 0, 0, 0.5), 6, 0.0, 0, 0);
+}
+
+/* Efek saat Tombol Hapus Diklik (Pressed) */
+.btn-aksi-hapus:pressed {
+    -fx-background-color: #962d22;
+    -fx-translate-y: 1px;           /* Efek tombol ambles ke dalam saat diklik */
 }
 
 /* Merapikan posisi isi teks nama produk agar rata kiri di dalam tabel */
 .col-nama-kiri {
     -fx-alignment: center-left;
     -fx-padding: 0 0 0 15px;
+}
+
+/* STYLE KHUSUS POP-UP */
+
+/* Container Utama Pop-up */
+.edit-popup-root {
+    -fx-background-color: #1e3495;
+    -fx-padding: 40px;
+    -fx-border-color: #000000;
+    -fx-border-width: 3px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-alignment: center;
+}
+
+/* Judul Pop-up */
+.edit-popup-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", Arial;
+    -fx-margin-bottom: 10px;
+}
+
+/* Label Input (Nama, Harga, Stok) */
+.edit-popup-label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", Arial;
+}
+
+/* Kotak Inputan (TextField) di dalam Pop-up */
+.edit-popup-field {
+    -fx-pref-width: 350px;
+    -fx-pref-height: 38px;
+    -fx-background-color: #cccccc; /* Warna abu-abu terang sesuai mockup */
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-padding: 0 10px;
+}
+
+/* Hover & Focus state biar interaktif saat diketik */
+.edit-popup-field:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #2ecc71;
+    -fx-border-width: 2px;
+}
+
+/* Tombol Batal (Merah) */
+.btn-popup-batal {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 20px;
+}
+.btn-popup-batal:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Tombol Simpan (Hijau) */
+.btn-popup-simpan {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 20px;
+}
+.btn-popup-simpan:hover {
+    -fx-background-color: #27ae60;
+}
+
+/*  STYLE KHUSUS ALERT KONFIRMASI HAPUS  */
+
+/* Background utama kotak Alert */
+.dialog-pane {
+    -fx-background-color: #1e3495;
+    -fx-border-color: #000000;
+    -fx-border-width: 3px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+}
+
+/* Mengubah semua warna teks deskripsi/konten di dalam Alert */
+.dialog-pane .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", Arial;
+    -fx-font-size: 15px;
+}
+
+/* Mengatur bagian Header (Judul Atas) */
+.dialog-pane:header .header-panel {
+    -fx-background-color: transparent;
+    -fx-padding: 15px 0 10px 0;
+}
+
+/* Mengubah Teks Judul Utama menjadi Hijau Toska / Cyan sesuai gambar */
+.dialog-pane:header .header-panel .label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00ffcc; /* Warna Toska cerah sesuai mockup */
+}
+
+/* Memaksa kontainer tombol (Button Bar) agar posisinya rata TENGAH */
+.dialog-pane .button-bar {
+    -fx-alignment: center;
+}
+
+.dialog-pane .button-bar .container {
+    -fx-alignment: center; /* Membuat tombol bergeser ke tengah */
+}
+
+/* Styling umum untuk semua tombol di dalam Alert */
+.dialog-pane .button-bar button {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 35px;
+    -fx-background-radius: 8px; /* Kelengkungan tombol rounded */
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: black; /* Teks tombol hitam biar kontras */
+}
+
+/* Tombol OK (Ganti warna jadi Hijau Cerah) */
+.dialog-pane .button-bar .button:default {
+    -fx-background-color: #2ecc71;
+}
+.dialog-pane .button-bar .button:default:hover {
+    -fx-background-color: #27ae60;
+}
+
+/* Tombol CANCEL (Ganti warna jadi Merah Cerah) */
+.dialog-pane .button-bar .button:cancel {
+    -fx-background-color: #ff0000;
+}
+.dialog-pane .button-bar .button:cancel:hover {
+    -fx-background-color: #cc0000;
+}
+
+/* Mewarnai lingkaran icon tanda tanya (?) bawaan JavaFX biar senada */
+.dialog-pane .graphic-container .image-view {
+    -fx-image: null; /* Jika ingin menghilangkan icon bawaan OS */
 }

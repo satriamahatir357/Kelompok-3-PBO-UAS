@@ -14,17 +14,26 @@
     -fx-text-fill: #ffffff;
     -fx-font-size: 32px;
     -fx-font-family: "System";
+    -fx-font-weight: bold;
 }
 
-/* Representasi Garis Icon Box Hitam */
 .logo-icon-box {
-    -fx-border-color: #000000;
-    -fx-border-width: 3px;
-    -fx-pref-width: 80px;
-    -fx-pref-height: 80px;
-    -fx-max-width: 80px;
-    /* Membuat efek miring 3D belah ketupat minimalis menggunakan rotasi */
-    -fx-rotate: 45; 
+    /* Tambahkan nama folder sebelum nama file */
+    -fx-background-image: url("images/SIMAMAT.png"); 
+    
+    -fx-background-size: contain;           
+    -fx-background-repeat: no-repeat;       
+    -fx-background-position: center;        
+    
+    -fx-pref-width: 130px;   
+    -fx-pref-height: 130px;  
+    -fx-max-width: 130px;
+    
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-rotate: 0;          
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
 }
 
 /* Wadah Pembungkus Tombol */
