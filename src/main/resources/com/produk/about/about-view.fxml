@@ -42,63 +42,69 @@
                   <GridPane alignment="CENTER" hgap="20.0" vgap="20.0" styleClass="team-grid">
                      <children>
                         
-                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <VBox alignment="CENTER" spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
                                  <image><Image url="@images/Andhika.jpeg" /></image>
                                  <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                               </ImageView>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Andhika Annas Satria" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="NIM: 25051204429" />
                            </children>
                         </VBox>
                         
-                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <VBox alignment="CENTER" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
                                  <image><Image url="@images/Anggito.jpeg" /></image>
                                  <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                               </ImageView>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Anggito Satrio Wicaksono" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="NIM: 25051204428" />
                            </children>
                         </VBox>
                         
-                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <VBox alignment="CENTER" spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
                                  <image><Image url="@images/Rafi.jpeg" /></image>
                                  <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                               </ImageView>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Rasya Zaka Arrafi" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="NIM: 25051204419" />
                            </children>
                         </VBox>
                         
-                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <VBox alignment="CENTER" spacing="4.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
                                  <image><Image url="@images/Wahyu.jpeg" /></image>
                                  <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                               </ImageView>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Wahyu Septiya Ardana" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="NIM: 25051204418" />
                            </children>
                         </VBox>
                         
-                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <VBox alignment="CENTER" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
                                  <image><Image url="@images/Jois.jpeg" /></image>
                                  <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                               </ImageView>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Jois Miranda Agunning Putri" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="NIM: 25051204427" />
                            </children>
                         </VBox>
                         
-                        <VBox alignment="CENTER" spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <VBox alignment="CENTER" spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="120.0" fitWidth="120.0" styleClass="team-photo">
                                  <image><Image url="@images/Okta.png" /></image>
                                  <clip><Rectangle arcHeight="20.0" arcWidth="20.0" height="120.0" width="120.0" /></clip>
                               </ImageView>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="Tri Oktavia Ramadhani" />
+                              <Label style="-fx-text-fill: white; -fx-font-size: 11px;" text="NIM: 25051204413" />
                            </children>
                         </VBox>
                         
